@@ -1,0 +1,28 @@
+# PULL UPDATE & LAUNCH DOCKER
+#     git pull && docker stack deploy --compose-file docker-compose.yml shepherd
+
+# REMOVE STACK
+#     docker stack rm shepherd
+
+# ADD BASIC AUTH and ESCAPE FOR docker-compose usage
+# htpasswd -bBn user password | sed 's/\$/\$\$/g' #escape for docker-compose usage
+
+version: "3"
+
+services:
+  shepherd:
+    image: mazzolino/shepherd
+    networks:
+      - traefik-net
+    environment:
+      - SLEEP_TIME="1m"
+      - BLACKLIST_SERVICES="traefik" #space seperated names
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+
+networks:
+  traefik-net:
+   external: true

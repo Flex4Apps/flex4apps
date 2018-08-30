@@ -1,0 +1,58 @@
+# PULL UPDATE & LAUNCH DOCKER
+#     git pull && docker stack deploy --compose-file docker-compose.yml elk56
+
+# REMOVE STACK
+#     docker stack rm drone
+
+# ADD BASIC AUTH and ESCAPE FOR docker-compose usage
+# htpasswd -bBn user password | sed 's/\$/\$\$/g' #escape for docker-compose usage
+
+version: "3.0"
+
+services:
+
+  elasticsearch:
+    environment:
+      ES_JAVA_OPTS: -Xms2g -Xmx2g
+    image: elasticsearch:5.6
+    ulimits:
+      memlock: -1
+      nofile:
+        hard: 65536
+        soft: 65536
+      nproc: 65538
+    volumes:
+      - /usr/share/elasticsearch/data
+    networks:
+      - traefik-net
+    command: >
+      bash -c 'ip addr && IP=$$(ip addr | awk -F"[ /]*" "/inet .*\/24/{print \$$3}") && \
+          echo publish_host=$$IP && \
+            exec /docker-entrypoint.sh -Enetwork.bind_host=0.0.0.0 -Enetwork.publish_host=$$IP -Ediscovery.zen.minimum_master_nodes=3 -Ediscovery.zen.ping.unicast.hosts=elasticsearch'
+    deploy:
+      mode: global
+      labels:
+        - traefik.port=9200
+        - "traefik.frontend.rule=Host:esc56.f4a.me"
+        - "traefik.frontend.auth.basic=witt:$$2y$$05$$kOFY7071ilbnpiJNDaIO9e1WeuhHnKtp9Adrevz4r8wJ3b3X1XuqW"
+        - "traefik.frontend.auth.basic="
+        - traefik.frontend.auth.basic=witt:$$2y$$05$$kOFY7071ilbnpiJNDaIO9e1WeuhHnKtp9Adrevz4r8wJ3b3X1XuqW,sebastian.schmitz:$$apr1$$cCDTHFrI$$m9QaIkyU8d86N4/r/jljJ/,flex4apps:$$2y$$05$$JvvVJToTDOfTzaNA/oIflecuy5l3pct94/3PfCB/g/xq4qZ49baU.
+
+
+  kibana:
+    image: kibana:5.6
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+    networks:
+      - traefik-net
+    deploy:
+      labels:
+        - traefik.port=5601
+        - "traefik.frontend.rule=Host:kb56.f4a.me"
+        - traefik.frontend.auth.basic=witt:$$2y$$05$$kOFY7071ilbnpiJNDaIO9e1WeuhHnKtp9Adrevz4r8wJ3b3X1XuqW,sebastian.schmitz:$$apr1$$cCDTHFrI$$m9QaIkyU8d86N4/r/jljJ/,flex4apps:$$2y$$05$$JvvVJToTDOfTzaNA/oIflecuy5l3pct94/3PfCB/g/xq4qZ49baU.
+
+
+
+networks:
+  traefik-net:
+   external: true

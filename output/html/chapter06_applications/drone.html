@@ -1,0 +1,308 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Drone &mdash; Flex4apps v0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/sphinx-needs/modern.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Flex4apps v0.1 documentation" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Flex4apps
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../chapter01_intro/01_intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter01_intro/01_preparation_bare_metal.html">Automatic server updates &amp; reboots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter02_stateOfTheArt/01_stateOfTheArt.html">State of the architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter03_docker/01_docker.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter04_gluster/01_gluster.html">Gluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter05_traefik/01_traefik.html">Traefik</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_applications.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter07_security/01_security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter07_security/01_security.html#let-s-encrypt">Let's encrypt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter08_monitoring/01_monitoring.html">Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09_cheatSheet.html">cheat sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_glossary.html">glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Flex4apps</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Drone</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/chapter06_applications/drone.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="drone">
+<h1>Drone<a class="headerlink" href="#drone" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="about-the-software">
+<h2>About the software<a class="headerlink" href="#about-the-software" title="Permalink to this headline">¶</a></h2>
+<p>A continuous integration server which is open source, and tightly integrates with open source git platforms like gogs or services like github.</p>
+</div>
+<div class="section" id="setting-it-up">
+<h2>Setting it up<a class="headerlink" href="#setting-it-up" title="Permalink to this headline">¶</a></h2>
+<p>A good installation procedure is available here at <a class="reference external" href="http://docs.drone.io/install-for-gogs/">http://docs.drone.io/install-for-gogs/</a>. The corresponding commands for F4A are below:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> \
+  <span class="o">--</span><span class="n">name</span> <span class="n">drone</span> \
+  <span class="o">--</span><span class="n">label</span> <span class="s2">&quot;traefik.port=8000&quot;</span> \
+  <span class="o">--</span><span class="n">publish</span> <span class="mi">8000</span><span class="p">:</span><span class="mi">8000</span> \
+  <span class="o">--</span><span class="n">publish</span> <span class="mi">9000</span><span class="p">:</span><span class="mi">9000</span> \
+  <span class="o">-</span><span class="n">e</span> <span class="n">DRONE_OPEN</span><span class="o">=</span><span class="n">true</span> \
+  <span class="o">-</span><span class="n">e</span> <span class="n">DRONE_HOST</span><span class="o">=</span><span class="n">drone</span><span class="o">.</span><span class="n">f4a</span><span class="o">.</span><span class="n">me</span> \
+  <span class="o">-</span><span class="n">e</span> <span class="n">DRONE_GOGS</span><span class="o">=</span><span class="n">true</span> \
+  <span class="o">-</span><span class="n">e</span> <span class="n">DRONE_GOGS_URL</span><span class="o">=</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">gogs</span><span class="o">.</span><span class="n">tillwitt</span><span class="o">.</span><span class="n">de</span> \
+  <span class="o">-</span><span class="n">e</span> <span class="n">DRONE_SECRET</span><span class="o">=&lt;</span><span class="n">some</span> <span class="n">secret</span><span class="o">&gt;</span> \
+  <span class="n">drone</span><span class="o">/</span><span class="n">drone</span><span class="p">:</span><span class="mf">0.8</span>
+
+<span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">/</span><span class="n">swarm</span><span class="o">/</span><span class="n">volumes</span><span class="o">/</span><span class="n">drone</span>
+
+<span class="n">docker</span> <span class="n">service</span> <span class="n">create</span> \
+  <span class="o">--</span><span class="n">name</span> <span class="n">drone</span> \
+  <span class="o">--</span><span class="n">label</span> <span class="s2">&quot;traefik.port=8000&quot;</span> \
+  <span class="o">--</span><span class="n">label</span> <span class="s2">&quot;traefik.docker.network=traefik-net&quot;</span> \
+  <span class="o">--</span><span class="n">network</span> <span class="n">traefik</span><span class="o">-</span><span class="n">net</span> \
+  <span class="o">--</span><span class="n">mount</span> <span class="nb">type</span><span class="o">=</span><span class="n">bind</span><span class="p">,</span><span class="n">src</span><span class="o">=/</span><span class="n">swarm</span><span class="o">/</span><span class="n">volumes</span><span class="o">/</span><span class="n">drone</span><span class="p">,</span><span class="n">dst</span><span class="o">=/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">drone</span><span class="o">/</span> \
+  <span class="o">--</span><span class="n">publish</span> <span class="mi">8000</span><span class="p">:</span><span class="mi">8000</span> \
+  <span class="o">--</span><span class="n">publish</span> <span class="mi">9000</span><span class="p">:</span><span class="mi">9000</span> \
+  <span class="o">-</span><span class="n">e</span> <span class="n">DRONE_OPEN</span><span class="o">=</span><span class="n">true</span> \
+  <span class="o">-</span><span class="n">e</span> <span class="n">DRONE_HOST</span><span class="o">=</span><span class="n">drone</span><span class="o">.</span><span class="n">f4a</span><span class="o">.</span><span class="n">me</span> \
+  <span class="o">-</span><span class="n">e</span> <span class="n">DRONE_GOGS</span><span class="o">=</span><span class="n">true</span> \
+  <span class="o">-</span><span class="n">e</span> <span class="n">DRONE_GOGS_URL</span><span class="o">=</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">gogs</span><span class="o">.</span><span class="n">tillwitt</span><span class="o">.</span><span class="n">de</span> \
+  <span class="o">-</span><span class="n">e</span> <span class="n">DRONE_SECRET</span><span class="o">=&lt;</span><span class="n">some</span> <span class="n">secret</span><span class="o">&gt;</span> \
+  <span class="o">-</span><span class="n">e</span> <span class="n">DRONE_ADMIN</span><span class="o">=</span><span class="n">witt</span> \
+  <span class="n">drone</span><span class="o">/</span><span class="n">drone</span><span class="p">:</span><span class="mf">0.8</span>
+
+<span class="n">docker</span> <span class="n">service</span> <span class="n">create</span> \
+  <span class="o">--</span><span class="n">name</span> <span class="n">drone_agent</span> \
+  <span class="o">--</span><span class="n">mount</span> <span class="nb">type</span><span class="o">=</span><span class="n">bind</span><span class="p">,</span><span class="n">src</span><span class="o">=/</span><span class="n">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">docker</span><span class="o">.</span><span class="n">sock</span><span class="p">,</span><span class="n">dst</span><span class="o">=/</span><span class="n">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">docker</span><span class="o">.</span><span class="n">sock</span> \
+  <span class="o">--</span><span class="n">network</span> <span class="n">traefik</span><span class="o">-</span><span class="n">net</span> \
+  <span class="o">-</span><span class="n">e</span> <span class="n">DRONE_SERVER</span><span class="o">=</span><span class="n">drone</span><span class="p">:</span><span class="mi">9000</span> \
+  <span class="o">-</span><span class="n">e</span> <span class="n">DRONE_SECRET</span><span class="o">=&lt;</span><span class="n">some</span> <span class="n">secret</span><span class="o">&gt;</span> \
+  <span class="n">drone</span><span class="o">/</span><span class="n">agent</span><span class="p">:</span><span class="mf">0.8</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to">
+<h2>How to:<a class="headerlink" href="#how-to" title="Permalink to this headline">¶</a></h2>
+<p>Once setup, with in this case gogs, you can log into the web interface. After a short sync all repositories should be visible. Activate drone.io for the corresponding repository.</p>
+<p>To tell drone.io what to execute you need to add a <code class="docutils literal"><span class="pre">.drone.yml</span></code> to your repository. Examples are below.</p>
+</div>
+<div class="section" id="examples-and-configuration">
+<h2>Examples and configuration<a class="headerlink" href="#examples-and-configuration" title="Permalink to this headline">¶</a></h2>
+<p>example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">image</span><span class="p">:</span> <span class="n">dockerfile</span><span class="o">/</span><span class="n">nginx</span>
+<span class="n">script</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">echo</span> <span class="n">hello</span> <span class="n">world</span>
+
+  <span class="n">publish</span><span class="p">:</span>
+    <span class="n">docker</span><span class="p">:</span>
+      <span class="n">registry</span><span class="p">:</span> <span class="n">registry</span><span class="o">.</span><span class="n">f4a</span><span class="o">.</span><span class="n">me</span>
+      <span class="n">email</span><span class="p">:</span> <span class="n">witt</span><span class="nd">@f4a</span><span class="o">.</span><span class="n">me</span>
+      <span class="n">repo</span><span class="p">:</span> <span class="n">registry</span><span class="o">.</span><span class="n">f4a</span><span class="o">.</span><span class="n">me</span><span class="o">/</span><span class="n">flex4apps</span><span class="o">/</span><span class="n">flex4apps</span><span class="o">/</span><span class="n">homomorphic</span><span class="o">-</span><span class="n">encryption</span>
+      <span class="n">file</span><span class="p">:</span> <span class="n">homomorphic</span><span class="o">-</span><span class="n">encryption</span><span class="o">/</span><span class="n">Dockerfile</span>
+      <span class="n">context</span><span class="p">:</span> <span class="n">homomorphic</span><span class="o">-</span><span class="n">encryption</span>
+      <span class="n">tag</span><span class="p">:</span> <span class="n">latest</span>
+      <span class="n">secrets</span><span class="p">:</span> <span class="p">[</span> <span class="n">docker_username</span><span class="p">,</span> <span class="n">docker_password</span> <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Till Witt, Johannes Berg, Alex Nowak.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

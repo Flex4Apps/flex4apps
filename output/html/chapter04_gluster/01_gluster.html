@@ -1,0 +1,325 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Gluster &mdash; Flex4apps v0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/sphinx-needs/modern.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Flex4apps v0.1 documentation" href="../index.html"/>
+        <link rel="next" title="Traefik" href="../chapter05_traefik/01_traefik.html"/>
+        <link rel="prev" title="Docker" href="../chapter03_docker/01_docker.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Flex4apps
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../chapter01_intro/01_intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter01_intro/01_preparation_bare_metal.html">Automatic server updates &amp; reboots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter02_stateOfTheArt/01_stateOfTheArt.html">State of the architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter03_docker/01_docker.html">Docker</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Gluster</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-gluster">What is gluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-1-join-computers-into-a-gluster">Step 1 - join computers into a gluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2-create-a-sync-volume">Step 2 - create a sync volume</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#experience">Experience</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter05_traefik/01_traefik.html">Traefik</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter06_applications/01_applications.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter07_security/01_security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter07_security/01_security.html#let-s-encrypt">Let's encrypt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter08_monitoring/01_monitoring.html">Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09_cheatSheet.html">cheat sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_glossary.html">glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Flex4apps</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Gluster</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/chapter04_gluster/01_gluster.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="gluster">
+<h1>Gluster<a class="headerlink" href="#gluster" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-gluster">
+<h2>What is gluster<a class="headerlink" href="#what-is-gluster" title="Permalink to this headline">¶</a></h2>
+<p>GlusterFS is a distributed file system that presents storage elements from multiple servers as a unified file system. The various servers, also known as cluster nodes, form a client-server architecture over TCP/IP.</p>
+</div>
+<div class="section" id="step-1-join-computers-into-a-gluster">
+<h2>Step 1 - join computers into a gluster<a class="headerlink" href="#step-1-join-computers-into-a-gluster" title="Permalink to this headline">¶</a></h2>
+<p>For each swarm the the <code class="docutils literal"><span class="pre">/etc/hosts</span></code> needs to be updated. Otherwise there will be no connection. The following command appends the IPs of our swarm nodes to the host file. They need to be adapted to match your system setup:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="mf">89.144</span><span class="o">.</span><span class="mf">27.100</span> <span class="n">gluster0</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">hosts</span>
+<span class="n">echo</span> <span class="mf">89.144</span><span class="o">.</span><span class="mf">27.101</span> <span class="n">gluster1</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">hosts</span>
+<span class="n">echo</span> <span class="mf">89.144</span><span class="o">.</span><span class="mf">27.102</span> <span class="n">gluster2</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">hosts</span>
+</pre></div>
+</div>
+<p>create a data where gluster shall store its operational data:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">gluster</span>
+</pre></div>
+</div>
+<p>If not done already you can install gluster via the following command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span> <span class="o">&amp;&amp;</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">glusterfs</span><span class="o">-</span><span class="n">server</span> <span class="o">&amp;&amp;</span> <span class="n">service</span> <span class="n">glusterfs</span><span class="o">-</span><span class="n">server</span> <span class="n">status</span>
+</pre></div>
+</div>
+<p>Now we need to join the nodes to the gluster:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gluster</span> <span class="n">peer</span> <span class="n">probe</span> <span class="n">gluster0</span> <span class="o">&amp;&amp;</span> <span class="n">gluster</span> <span class="n">peer</span> <span class="n">probe</span> <span class="n">gluster1</span> <span class="o">&amp;&amp;</span> <span class="n">gluster</span> <span class="n">peer</span> <span class="n">probe</span> <span class="n">gluster2</span>
+</pre></div>
+</div>
+<p>And check if everything went well:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gluster</span> <span class="n">peer</span> <span class="n">status</span>
+</pre></div>
+</div>
+<p>This should return something like:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">root</span><span class="nd">@nxp100</span><span class="p">:</span><span class="o">~</span><span class="c1"># gluster peer status</span>
+<span class="n">Number</span> <span class="n">of</span> <span class="n">Peers</span><span class="p">:</span> <span class="mi">4</span>
+
+<span class="n">Hostname</span><span class="p">:</span> <span class="n">gluster1</span>
+<span class="n">Uuid</span><span class="p">:</span> <span class="mf">32e5</span><span class="n">a4ac</span><span class="o">-</span><span class="n">bd12</span><span class="o">-...</span>
+<span class="n">State</span><span class="p">:</span> <span class="n">Peer</span> <span class="ow">in</span> <span class="n">Cluster</span> <span class="p">(</span><span class="n">Connected</span><span class="p">)</span>
+
+<span class="n">Hostname</span><span class="p">:</span> <span class="n">gluster2</span>
+<span class="n">Uuid</span><span class="p">:</span> <span class="mi">681007</span><span class="n">c5</span><span class="o">-</span><span class="n">ad57</span><span class="o">-...</span>
+<span class="n">State</span><span class="p">:</span> <span class="n">Peer</span> <span class="ow">in</span> <span class="n">Cluster</span> <span class="p">(</span><span class="n">Connected</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-2-create-a-sync-volume">
+<h2>Step 2 - create a sync volume<a class="headerlink" href="#step-2-create-a-sync-volume" title="Permalink to this headline">¶</a></h2>
+<p>we need to create a volume for data syncing. (This only needs to be executed on one node):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gluster</span>  <span class="n">volume</span> <span class="n">create</span> <span class="n">datapoint</span> <span class="n">replica</span> <span class="mi">3</span> <span class="n">transport</span> <span class="n">tcp</span>  \
+          <span class="n">gluster0</span><span class="p">:</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">gluster</span> \
+          <span class="n">gluster1</span><span class="p">:</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">gluster</span> \
+          <span class="n">gluster2</span><span class="p">:</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">gluster</span> \
+          <span class="n">force</span>
+</pre></div>
+</div>
+<p>and then start the volume (This only needs to be executed on one node):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gluster</span> <span class="n">volume</span> <span class="n">start</span> <span class="n">datapoint</span>
+</pre></div>
+</div>
+<p>last but not least we mount it (this needs to be done on each node!):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">shared</span>
+<span class="n">mount</span><span class="o">.</span><span class="n">glusterfs</span> <span class="n">localhost</span><span class="p">:</span><span class="o">/</span><span class="n">datapoint</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">shared</span>
+</pre></div>
+</div>
+<p>The gluster is ready for use now</p>
+</div>
+<div class="section" id="experience">
+<h2>Experience<a class="headerlink" href="#experience" title="Permalink to this headline">¶</a></h2>
+<p>Strange shutdown of Cluster</p>
+<p>gluster peer status
+gluster volume info
+gluster volume heal datapoint</p>
+<p>apparently node was down.</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../chapter05_traefik/01_traefik.html" class="btn btn-neutral float-right" title="Traefik" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../chapter03_docker/01_docker.html" class="btn btn-neutral" title="Docker" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Till Witt, Johannes Berg, Alex Nowak.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

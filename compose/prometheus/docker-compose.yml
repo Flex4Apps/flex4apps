@@ -1,0 +1,57 @@
+# Flex4Apps documentation
+
+# PULL UPDATE & LAUNCH DOCKER
+#     git pull && docker stack deploy --with-registry-auth --compose-file docker-compose.yml prom
+
+# REMOVE STACK
+#     docker stack rm prom
+
+# ADD BASIC AUTH and ESCAPE FOR docker-compose usage
+# htpasswd -bBn user password | sed 's/\$/\$\$/g' #escape for docker-compose usage
+
+version: "3.1"
+
+services:
+  server:
+    image: prom/prometheus
+    volumes:
+      -  /swarm/volumes/prometheus/data:/prometheus
+      -  ./prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - traefik-net
+    deploy:
+      labels:
+        - traefik.port=9090
+        - "traefik.frontend.auth.basic=witt:$$2y$$05$$kOFY7071ilbnpiJNDaIO9e1WeuhHnKtp9Adrevz4r8wJ3b3X1XuqW"
+        - "traefik.frontend.rule=Host:prometheus.f4a.me"
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 30s
+      placement:
+        constraints: [node.role == manager]
+
+  nodeexporter:
+    image: prom/node-exporter:latest
+    volumes:
+      - /proc:/host/proc:ro \
+      - /sys:/host/sys:ro \
+      - /:/rootfs:ro \
+    networks:
+      - traefik-net
+    ports:
+      - 9100:9100
+    deploy:
+      mode: global
+      labels:
+        - com.group="prom-monitoring"
+
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - --collector.filesystem.ignored-mount-points
+      - "^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)"
+
+networks:
+  traefik-net:
+   external: true

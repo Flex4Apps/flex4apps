@@ -1,0 +1,252 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>PhpMyAdmin &mdash; Flex4apps v0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/sphinx-needs/modern.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Flex4apps v0.1 documentation" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Flex4apps
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../chapter01_intro/01_intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter01_intro/01_preparation_bare_metal.html">Automatic server updates &amp; reboots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter02_stateOfTheArt/01_stateOfTheArt.html">State of the architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter03_docker/01_docker.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter04_gluster/01_gluster.html">Gluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter05_traefik/01_traefik.html">Traefik</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_applications.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter07_security/01_security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter07_security/01_security.html#let-s-encrypt">Let's encrypt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter08_monitoring/01_monitoring.html">Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09_cheatSheet.html">cheat sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_glossary.html">glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Flex4apps</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>PhpMyAdmin</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/chapter06_applications/phpmyadmin.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="phpmyadmin">
+<h1>PhpMyAdmin<a class="headerlink" href="#phpmyadmin" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-phpmyadmin">
+<h2>What is PhpMyAdmin<a class="headerlink" href="#what-is-phpmyadmin" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="how-to-set-it-up">
+<h2>How to set it up<a class="headerlink" href="#how-to-set-it-up" title="Permalink to this headline">¶</a></h2>
+<p>The following command will start up PhpMyAdmin:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">service</span> <span class="n">create</span> \
+    <span class="o">--</span><span class="n">name</span> <span class="n">phpmyadmin</span> \
+    <span class="o">--</span><span class="n">label</span> <span class="s2">&quot;traefik.port=80&quot;</span> \
+    <span class="o">--</span><span class="n">network</span> <span class="n">traefik</span><span class="o">-</span><span class="n">net</span> \
+    <span class="o">-</span><span class="n">e</span> <span class="n">ALLOW_ARBITRARY</span><span class="o">=</span><span class="mi">1</span> \
+    <span class="n">nazarpc</span><span class="o">/</span><span class="n">phpmyadmin</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Till Witt, Johannes Berg, Alex Nowak.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

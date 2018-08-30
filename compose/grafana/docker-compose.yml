@@ -1,0 +1,36 @@
+# Flex4Apps documentation
+
+# PULL UPDATE & LAUNCH DOCKER
+#     git pull && docker stack deploy --compose-file docker-compose.yml grafana
+
+# REMOVE STACK
+#     docker stack rm grafana
+
+# ADD BASIC AUTH and ESCAPE FOR docker-compose usage
+# htpasswd -bBn user password | sed 's/\$/\$\$/g' #escape for docker-compose usage
+
+version: "3.1"
+
+services:
+  server:
+    image:   grafana/grafana
+    volumes:
+      -  /swarm/volumes/grafana:/var/lib/grafana
+    networks:
+      - traefik-net
+    environment:
+      - "GF_SECURITY_ADMIN_PASSWORD=someSecretPassword"
+    deploy:
+      labels:
+        - traefik.port=3000
+        - "traefik.frontend.rule=Host:grafana.f4a.me"
+      replicas: 1
+#      update_config:
+#        parallelism: 1
+#        delay: 30s
+#      placement:
+#        constraints: [node.role == manager]
+
+networks:
+  traefik-net:
+   external: true

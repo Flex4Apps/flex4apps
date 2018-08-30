@@ -1,0 +1,47 @@
+# PULL UPDATE & LAUNCH DOCKER
+#     git pull && docker stack deploy --compose-file docker-compose.yml traefik
+
+# REMOVE STACK
+#     docker stack rm traefik
+
+# ADD BASIC AUTH and ESCAPE FOR docker-compose usage
+# htpasswd -bBn user password | sed 's/\$/\$\$/g' #escape for docker-compose usage
+
+version: "3"
+
+services:
+  traefik:
+    image: traefik:1.5.2
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    networks:
+      - traefik-net
+    command:
+      --entryPoints='Name:http Address::80 Redirect.EntryPoint:https' \
+      --entryPoints='Name:https Address::443 TLS' \
+      --defaultEntryPoints=http,https \
+      --acme.entryPoint=https \
+      --acme.httpChallenge.entryPoint=http \
+      --acme.email=mail@tillwitt.de \
+      --acme.storage=/etc/traefik/acme/acme.json \
+      --acme.domains=f4a.me \
+      --acme.onHostRule=true \
+      --docker \
+      --docker.swarmmode \
+      --docker.domain=f4a.me \
+      --docker.watch \
+      --logLevel=DEBUG \
+      --web
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /data/local/traefik/logs:/var/log/traefik
+      - /data/local/traefik/acme:/etc/traefik/acme
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+
+networks:
+  traefik-net:
+   external: true

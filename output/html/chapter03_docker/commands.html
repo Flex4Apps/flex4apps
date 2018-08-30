@@ -1,0 +1,279 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Docker commands &mdash; Flex4apps v0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/sphinx-needs/modern.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Flex4apps v0.1 documentation" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Flex4apps
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../chapter01_intro/01_intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter01_intro/01_preparation_bare_metal.html">Automatic server updates &amp; reboots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter02_stateOfTheArt/01_stateOfTheArt.html">State of the architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_docker.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter04_gluster/01_gluster.html">Gluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter05_traefik/01_traefik.html">Traefik</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter06_applications/01_applications.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter07_security/01_security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter07_security/01_security.html#let-s-encrypt">Let's encrypt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter08_monitoring/01_monitoring.html">Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09_cheatSheet.html">cheat sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_glossary.html">glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Flex4apps</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Docker commands</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/chapter03_docker/commands.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="docker-commands">
+<h1>Docker commands<a class="headerlink" href="#docker-commands" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="docker-run-vs-docker-compose">
+<h2>docker run vs docker compose<a class="headerlink" href="#docker-run-vs-docker-compose" title="Permalink to this headline">¶</a></h2>
+<p>Advantages of docker run are that the command is easy to issue, just a copy &amp; paste to the servers command line. Downside is, that the commands get quite long and adding line breaks introduces another possible fault. If you want to correct a running service you need to remove it first and then reissue it.</p>
+<p>Advantages of using a docker-compose.yml is that they are usually easy to edit. Disadvantage is that you have to create them on the server first then issue the command to start them - so one additional step. But the biggest advantage is that they can be re-executed on existing services which will lead to a service update.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>starting a generic web application with docker run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">service</span> <span class="n">create</span> \
+    <span class="o">--</span><span class="n">name</span> <span class="n">demo</span> \
+    <span class="o">--</span><span class="n">label</span> <span class="s2">&quot;traefik.port=80&quot;</span> \
+    <span class="o">--</span><span class="n">network</span> <span class="n">traefik</span><span class="o">-</span><span class="n">net</span> \
+    <span class="n">kitematic</span><span class="o">/</span><span class="n">hello</span><span class="o">-</span><span class="n">world</span><span class="o">-</span><span class="n">nginx</span>
+</pre></div>
+</div>
+<p>Thats all - and the service is running.</p>
+<p>To create the same via docker-compose.yml:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">version</span><span class="p">:</span> <span class="s2">&quot;3&quot;</span>
+
+<span class="n">services</span><span class="p">:</span>
+  <span class="n">nginx</span><span class="p">:</span>
+    <span class="n">image</span><span class="p">:</span> <span class="n">kitematic</span><span class="o">/</span><span class="n">hello</span><span class="o">-</span><span class="n">world</span><span class="o">-</span><span class="n">nginx</span>
+    <span class="n">networks</span><span class="p">:</span>
+      <span class="o">-</span> <span class="n">traefik</span><span class="o">-</span><span class="n">net</span>
+    <span class="n">deploy</span><span class="p">:</span>
+      <span class="n">labels</span><span class="p">:</span>
+        <span class="o">-</span> <span class="n">traefik</span><span class="o">.</span><span class="n">port</span><span class="o">=</span><span class="mi">80</span>
+        <span class="o">-</span> <span class="s2">&quot;traefik.frontend.rule=Host:demo.f4a.me&quot;</span>
+<span class="n">networks</span><span class="p">:</span>
+  <span class="n">traefik</span><span class="o">-</span><span class="n">net</span><span class="p">:</span>
+   <span class="n">external</span><span class="p">:</span> <span class="n">true</span>
+</pre></div>
+</div>
+<p>Then you need to issue the following command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">stack</span> <span class="n">deploy</span> <span class="o">--</span><span class="n">compose</span><span class="o">-</span><span class="n">file</span> <span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="o">.</span><span class="n">yml</span> <span class="n">demo</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<p>To quickly test a service - docker run is nice. But to maintain a production environment docker-compose files are strongly recommended.</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Till Witt, Johannes Berg, Alex Nowak.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

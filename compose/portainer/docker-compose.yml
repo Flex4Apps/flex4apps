@@ -1,0 +1,32 @@
+# PULL UPDATE & LAUNCH DOCKER
+#     git pull && docker stack deploy --compose-file docker-compose.yml portainer
+
+# REMOVE STACK
+#     docker stack rm mariadb
+
+# ADD BASIC AUTH and ESCAPE FOR docker-compose usage
+# htpasswd -bBn user password | sed 's/\$/\$\$/g' #escape for docker-compose usage
+
+version: "3"
+
+services:
+  server:
+    image: portainer/portainer
+    networks:
+      traefik-net:
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /data/local/portainer:/data
+    environment:
+      - MYSQL_ROOT_PASSWORD=someSecretPassword
+    deploy:
+      labels:
+        - traefik.port=9000
+        - "traefik.frontend.rule=Host:portainer.f4a.me"
+      placement:
+        constraints: [node.role == manager]
+
+networks:
+  default:
+  traefik-net:
+   external: true

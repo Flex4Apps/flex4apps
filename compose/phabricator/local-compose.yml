@@ -1,0 +1,38 @@
+# PULL UPDATE & LAUNCH DOCKER
+#     git pull && docker stack deploy --with-registry-auth --compose-file docker-compose.yml phabricator
+
+# REMOVE STACK
+#     docker stack rm phabricator
+
+# ADD BASIC AUTH and ESCAPE FOR docker-compose usage
+# htpasswd -bBn user password | sed 's/\$/\$\$/g' #escape for docker-compose usage
+
+version: "3.1"
+
+
+services:
+   web:
+     build: ./web
+     networks:
+       - traefik-net
+     ports:
+       - "80:80"
+     deploy:
+      labels:
+        - traefik.port=80
+        - "traefik.frontend.rule=Host:phabricator.f4a.me"
+
+#   db:
+#     image: mysql:5.7
+#     volumes:
+#       - ./data:/var/lib/mysql
+#     restart: always
+#     environment:
+#       MYSQL_ROOT_PASSWORD: root
+#       MYSQL_DATABASE: phabricator
+#       MYSQL_USER: phabricator
+#       MYSQL_PASSWORD: phabricator
+
+networks:
+  traefik-net:
+   external: true

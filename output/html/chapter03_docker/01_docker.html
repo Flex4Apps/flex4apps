@@ -1,0 +1,438 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Docker &mdash; Flex4apps v0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/sphinx-needs/modern.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Flex4apps v0.1 documentation" href="../index.html"/>
+        <link rel="next" title="Gluster" href="../chapter04_gluster/01_gluster.html"/>
+        <link rel="prev" title="State of the architecture" href="../chapter02_stateOfTheArt/01_stateOfTheArt.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Flex4apps
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../chapter01_intro/01_intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter01_intro/01_preparation_bare_metal.html">Automatic server updates &amp; reboots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter02_stateOfTheArt/01_stateOfTheArt.html">State of the architecture</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-docker">What is Docker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#step-1-setting-up-the-servers">Step 1 - setting up the servers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-2-initiate-a-swarm">Step 2 - initiate a swarm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-3-preparing-the-domain">Step 3 - preparing the domain</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#docker-commands">Docker commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#docker-run-vs-docker-compose">docker run vs docker compose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#docker-registry">Docker registry</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pushing-to-private-registry">Pushing to private registry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#query-the-registry">Query the registry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#private-repository-viewer">Private repository viewer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#alternatives">Alternatives</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter04_gluster/01_gluster.html">Gluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter05_traefik/01_traefik.html">Traefik</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter06_applications/01_applications.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter07_security/01_security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter07_security/01_security.html#let-s-encrypt">Let's encrypt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter08_monitoring/01_monitoring.html">Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09_cheatSheet.html">cheat sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_glossary.html">glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Flex4apps</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Docker</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/chapter03_docker/01_docker.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="docker">
+<h1>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-docker">
+<h2>What is Docker<a class="headerlink" href="#what-is-docker" title="Permalink to this headline">¶</a></h2>
+<p>to be described</p>
+<div class="section" id="step-1-setting-up-the-servers">
+<h3>Step 1 - setting up the servers<a class="headerlink" href="#step-1-setting-up-the-servers" title="Permalink to this headline">¶</a></h3>
+<p>Nowadays the servers are usually preinstalled or an installation process can be kicked off via web interface. For the F4A usecase we chose Ubuntu 16.04 LTS (Long term support).</p>
+<p>First we should ensure that the system is up-to-date and secure. This is done by kicking off the advanced packaging tool (apt). Within this process we can directly install the docker server component. All steps are done by issueing the following command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span> <span class="o">&amp;&amp;</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">upgrade</span> <span class="o">-</span><span class="n">y</span> <span class="o">&amp;&amp;</span> <span class="n">apt</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">docker</span><span class="o">.</span><span class="n">io</span>
+</pre></div>
+</div>
+<p>As docker is still being developed, certain functionality still changes. This tutorial has been created using the following docker version (you can find our yours by executing <code class="docutils literal"><span class="pre">`docker</span> <span class="pre">version`</span></code>):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">root</span><span class="nd">@nxp100</span><span class="p">:</span><span class="o">~</span><span class="c1"># docker version</span>
+<span class="n">Client</span><span class="p">:</span>
+ <span class="n">Version</span><span class="p">:</span>      <span class="mf">1.13</span><span class="o">.</span><span class="mi">1</span>
+ <span class="n">API</span> <span class="n">version</span><span class="p">:</span>  <span class="mf">1.26</span>
+ <span class="n">Go</span> <span class="n">version</span><span class="p">:</span>   <span class="n">go1</span><span class="o">.</span><span class="mf">6.2</span>
+ <span class="n">Git</span> <span class="n">commit</span><span class="p">:</span>   <span class="mi">092</span><span class="n">cba3</span>
+ <span class="n">Built</span><span class="p">:</span>        <span class="n">Thu</span> <span class="n">Nov</span>  <span class="mi">2</span> <span class="mi">20</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mi">23</span> <span class="mi">2017</span>
+ <span class="n">OS</span><span class="o">/</span><span class="n">Arch</span><span class="p">:</span>      <span class="n">linux</span><span class="o">/</span><span class="n">amd64</span>
+
+<span class="n">Server</span><span class="p">:</span>
+ <span class="n">Version</span><span class="p">:</span>      <span class="mf">1.13</span><span class="o">.</span><span class="mi">1</span>
+ <span class="n">API</span> <span class="n">version</span><span class="p">:</span>  <span class="mf">1.26</span> <span class="p">(</span><span class="n">minimum</span> <span class="n">version</span> <span class="mf">1.12</span><span class="p">)</span>
+ <span class="n">Go</span> <span class="n">version</span><span class="p">:</span>   <span class="n">go1</span><span class="o">.</span><span class="mf">6.2</span>
+ <span class="n">Git</span> <span class="n">commit</span><span class="p">:</span>   <span class="mi">092</span><span class="n">cba3</span>
+ <span class="n">Built</span><span class="p">:</span>        <span class="n">Thu</span> <span class="n">Nov</span>  <span class="mi">2</span> <span class="mi">20</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mi">23</span> <span class="mi">2017</span>
+ <span class="n">OS</span><span class="o">/</span><span class="n">Arch</span><span class="p">:</span>      <span class="n">linux</span><span class="o">/</span><span class="n">amd64</span>
+ <span class="n">Experimental</span><span class="p">:</span> <span class="n">false</span>
+<span class="n">root</span><span class="nd">@nxp100</span><span class="p">:</span><span class="o">~</span><span class="c1">#</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-2-initiate-a-swarm">
+<h3>Step 2 - initiate a swarm<a class="headerlink" href="#step-2-initiate-a-swarm" title="Permalink to this headline">¶</a></h3>
+<p>Setting up the docker swarm. A swarm is a group of computers:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">swarm</span> <span class="n">init</span> <span class="o">--</span><span class="n">advertise</span><span class="o">-</span><span class="n">addr</span> <span class="mf">89.144</span><span class="o">.</span><span class="mf">27.100</span>
+</pre></div>
+</div>
+<p>getting the feedback:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Swarm</span> <span class="n">initialized</span><span class="p">:</span> <span class="n">current</span> <span class="n">node</span> <span class="p">(</span><span class="n">r3t3pu7rd74njml1afsf2uoev</span><span class="p">)</span> <span class="ow">is</span> <span class="n">now</span> <span class="n">a</span> <span class="n">manager</span><span class="o">.</span>
+
+<span class="n">To</span> <span class="n">add</span> <span class="n">a</span> <span class="n">worker</span> <span class="n">to</span> <span class="n">this</span> <span class="n">swarm</span><span class="p">,</span> <span class="n">run</span> <span class="n">the</span> <span class="n">following</span> <span class="n">command</span><span class="p">:</span>
+
+    <span class="n">docker</span> <span class="n">swarm</span> <span class="n">join</span> \
+    <span class="o">--</span><span class="n">token</span> <span class="o">&lt;</span><span class="n">some</span> <span class="n">secret</span> <span class="n">token</span> <span class="n">displayed</span> <span class="n">here</span><span class="o">&gt;</span> \
+    <span class="mf">89.144</span><span class="o">.</span><span class="mf">27.100</span><span class="p">:</span><span class="mi">2377</span>
+
+<span class="n">To</span> <span class="n">add</span> <span class="n">a</span> <span class="n">manager</span> <span class="n">to</span> <span class="n">this</span> <span class="n">swarm</span><span class="p">,</span> <span class="n">run</span> <span class="s1">&#39;docker swarm join-token manager&#39;</span> <span class="ow">and</span> <span class="n">follow</span> <span class="n">the</span> <span class="n">instructions</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>If you dont remember the token etc - just run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">swarm</span> <span class="n">join</span><span class="o">-</span><span class="n">token</span> <span class="n">worker</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-3-preparing-the-domain">
+<h3>Step 3 - preparing the domain<a class="headerlink" href="#step-3-preparing-the-domain" title="Permalink to this headline">¶</a></h3>
+<p>register any domain you like. Just make sure that the domain names are pointing to all the server IPs you have. With that load balancing / failover is possible:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">f4a</span><span class="o">.</span><span class="n">me</span><span class="o">.</span>                       <span class="mi">86400</span>   <span class="n">IN</span>      <span class="n">SOA</span>     <span class="n">nsa3</span><span class="o">.</span><span class="n">schlundtech</span><span class="o">.</span><span class="n">de</span><span class="o">.</span> <span class="n">mail</span><span class="o">.</span><span class="n">tillwitt</span><span class="o">.</span><span class="n">de</span><span class="o">.</span> <span class="mi">2017112808</span> <span class="mi">43200</span> <span class="mi">7200</span> <span class="mi">1209600</span> <span class="mi">86400</span>
+<span class="n">f4a</span><span class="o">.</span><span class="n">me</span><span class="o">.</span>                       <span class="mi">86400</span>   <span class="n">IN</span>      <span class="n">NS</span>      <span class="n">nsa3</span><span class="o">.</span><span class="n">schlundtech</span><span class="o">.</span><span class="n">de</span><span class="o">.</span>
+<span class="n">f4a</span><span class="o">.</span><span class="n">me</span><span class="o">.</span>                       <span class="mi">86400</span>   <span class="n">IN</span>      <span class="n">NS</span>      <span class="n">nsb3</span><span class="o">.</span><span class="n">schlundtech</span><span class="o">.</span><span class="n">de</span><span class="o">.</span>
+<span class="n">f4a</span><span class="o">.</span><span class="n">me</span><span class="o">.</span>                       <span class="mi">86400</span>   <span class="n">IN</span>      <span class="n">NS</span>      <span class="n">nsc3</span><span class="o">.</span><span class="n">schlundtech</span><span class="o">.</span><span class="n">de</span><span class="o">.</span>
+<span class="n">f4a</span><span class="o">.</span><span class="n">me</span><span class="o">.</span>                       <span class="mi">86400</span>   <span class="n">IN</span>      <span class="n">NS</span>      <span class="n">nsd3</span><span class="o">.</span><span class="n">schlundtech</span><span class="o">.</span><span class="n">de</span><span class="o">.</span>
+<span class="n">f4a</span><span class="o">.</span><span class="n">me</span><span class="o">.</span>                         <span class="mi">600</span>   <span class="n">IN</span>      <span class="n">MX</span>      <span class="mi">10</span> <span class="n">mail</span><span class="o">.</span><span class="n">f4a</span><span class="o">.</span><span class="n">me</span><span class="o">.</span>
+<span class="o">*.</span><span class="n">f4a</span><span class="o">.</span><span class="n">me</span><span class="o">.</span>         <span class="mi">600</span> <span class="n">IN</span>      <span class="n">A</span>       <span class="mf">89.144</span><span class="o">.</span><span class="mf">24.15</span>
+<span class="o">*.</span><span class="n">f4a</span><span class="o">.</span><span class="n">me</span><span class="o">.</span>               <span class="mi">600</span>   <span class="n">IN</span>      <span class="n">A</span>       <span class="mf">89.144</span><span class="o">.</span><span class="mf">27.100</span>
+<span class="o">*.</span><span class="n">f4a</span><span class="o">.</span><span class="n">me</span><span class="o">.</span>               <span class="mi">600</span>   <span class="n">IN</span>      <span class="n">A</span>       <span class="mf">89.144</span><span class="o">.</span><span class="mf">27.101</span>
+<span class="o">*.</span><span class="n">f4a</span><span class="o">.</span><span class="n">me</span><span class="o">.</span>               <span class="mi">600</span>   <span class="n">IN</span>      <span class="n">A</span>       <span class="mf">89.144</span><span class="o">.</span><span class="mf">27.102</span>
+<span class="o">*.</span><span class="n">f4a</span><span class="o">.</span><span class="n">me</span><span class="o">.</span>               <span class="mi">600</span>   <span class="n">IN</span>      <span class="n">A</span>       <span class="mf">89.144</span><span class="o">.</span><span class="mf">27.103</span>
+<span class="n">nxp100</span><span class="o">.</span><span class="n">f4a</span><span class="o">.</span><span class="n">me</span><span class="o">.</span>                <span class="mi">600</span>     <span class="n">IN</span>      <span class="n">A</span>       <span class="mf">89.144</span><span class="o">.</span><span class="mf">27.100</span>
+<span class="n">nxp101</span><span class="o">.</span><span class="n">f4a</span><span class="o">.</span><span class="n">me</span><span class="o">.</span>                <span class="mi">600</span>     <span class="n">IN</span>      <span class="n">A</span>       <span class="mf">89.144</span><span class="o">.</span><span class="mf">27.101</span>
+<span class="n">nxp102</span><span class="o">.</span><span class="n">f4a</span><span class="o">.</span><span class="n">me</span><span class="o">.</span>                <span class="mi">600</span>     <span class="n">IN</span>      <span class="n">A</span>       <span class="mf">89.144</span><span class="o">.</span><span class="mf">27.102</span>
+<span class="n">nxp103</span><span class="o">.</span><span class="n">f4a</span><span class="o">.</span><span class="n">me</span><span class="o">.</span>                <span class="mi">600</span>     <span class="n">IN</span>      <span class="n">A</span>       <span class="mf">89.144</span><span class="o">.</span><span class="mf">27.103</span>
+<span class="n">nxp104</span><span class="o">.</span><span class="n">f4a</span><span class="o">.</span><span class="n">me</span><span class="o">.</span>                <span class="mi">600</span>     <span class="n">IN</span>      <span class="n">A</span>       <span class="mf">89.144</span><span class="o">.</span><span class="mf">24.15</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="docker-commands">
+<h2>Docker commands<a class="headerlink" href="#docker-commands" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="docker-run-vs-docker-compose">
+<h3>docker run vs docker compose<a class="headerlink" href="#docker-run-vs-docker-compose" title="Permalink to this headline">¶</a></h3>
+<p>Advantages of docker run are that the command is easy to issue, just a copy &amp; paste to the servers command line. Downside is, that the commands get quite long and adding line breaks introduces another possible fault. If you want to correct a running service you need to remove it first and then reissue it.</p>
+<p>Advantages of using a docker-compose.yml is that they are usually easy to edit. Disadvantage is that you have to create them on the server first then issue the command to start them - so one additional step. But the biggest advantage is that they can be re-executed on existing services which will lead to a service update.</p>
+</div>
+<div class="section" id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<p>starting a generic web application with docker run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">service</span> <span class="n">create</span> \
+    <span class="o">--</span><span class="n">name</span> <span class="n">demo</span> \
+    <span class="o">--</span><span class="n">label</span> <span class="s2">&quot;traefik.port=80&quot;</span> \
+    <span class="o">--</span><span class="n">network</span> <span class="n">traefik</span><span class="o">-</span><span class="n">net</span> \
+    <span class="n">kitematic</span><span class="o">/</span><span class="n">hello</span><span class="o">-</span><span class="n">world</span><span class="o">-</span><span class="n">nginx</span>
+</pre></div>
+</div>
+<p>Thats all - and the service is running.</p>
+<p>To create the same via docker-compose.yml:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">version</span><span class="p">:</span> <span class="s2">&quot;3&quot;</span>
+
+<span class="n">services</span><span class="p">:</span>
+  <span class="n">nginx</span><span class="p">:</span>
+    <span class="n">image</span><span class="p">:</span> <span class="n">kitematic</span><span class="o">/</span><span class="n">hello</span><span class="o">-</span><span class="n">world</span><span class="o">-</span><span class="n">nginx</span>
+    <span class="n">networks</span><span class="p">:</span>
+      <span class="o">-</span> <span class="n">traefik</span><span class="o">-</span><span class="n">net</span>
+    <span class="n">deploy</span><span class="p">:</span>
+      <span class="n">labels</span><span class="p">:</span>
+        <span class="o">-</span> <span class="n">traefik</span><span class="o">.</span><span class="n">port</span><span class="o">=</span><span class="mi">80</span>
+        <span class="o">-</span> <span class="s2">&quot;traefik.frontend.rule=Host:demo.f4a.me&quot;</span>
+<span class="n">networks</span><span class="p">:</span>
+  <span class="n">traefik</span><span class="o">-</span><span class="n">net</span><span class="p">:</span>
+   <span class="n">external</span><span class="p">:</span> <span class="n">true</span>
+</pre></div>
+</div>
+<p>Then you need to issue the following command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">stack</span> <span class="n">deploy</span> <span class="o">--</span><span class="n">compose</span><span class="o">-</span><span class="n">file</span> <span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="o">.</span><span class="n">yml</span> <span class="n">demo</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="conclusion">
+<h3>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h3>
+<p>To quickly test a service - docker run is nice. But to maintain a production environment docker-compose files are strongly recommended.</p>
+</div>
+</div>
+<div class="section" id="docker-registry">
+<h2>Docker registry<a class="headerlink" href="#docker-registry" title="Permalink to this headline">¶</a></h2>
+<p>Running your own registry:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">service</span> <span class="n">create</span> \
+   <span class="o">--</span><span class="n">name</span> <span class="n">backoffice</span> \
+   <span class="o">--</span><span class="n">network</span> <span class="n">traefik</span><span class="o">-</span><span class="n">net</span> \
+   <span class="o">--</span><span class="n">label</span> <span class="s2">&quot;traefik.port=5000&quot;</span> \
+   <span class="o">--</span><span class="n">label</span> <span class="s1">&#39;traefik.frontend.auth.basic=flex4apps:$apr1$G9e4rgPu$jbn2AAk2F.OeGnRVFnIR/1&#39;</span> \
+   <span class="o">--</span><span class="n">mount</span> <span class="nb">type</span><span class="o">=</span><span class="n">bind</span><span class="p">,</span><span class="n">src</span><span class="o">=/</span><span class="n">swarm</span><span class="o">/</span><span class="n">volumes</span><span class="o">/</span><span class="n">registry</span><span class="p">,</span><span class="n">dst</span><span class="o">=/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">registry</span> \
+   <span class="n">registry</span><span class="p">:</span><span class="mi">2</span>
+</pre></div>
+</div>
+<div class="section" id="pushing-to-private-registry">
+<h3>Pushing to private registry<a class="headerlink" href="#pushing-to-private-registry" title="Permalink to this headline">¶</a></h3>
+<p>The local image needs to be taged and then pushed:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">tag</span> <span class="n">phabricator_image</span> <span class="n">registry</span><span class="o">.</span><span class="n">f4a</span><span class="o">.</span><span class="n">me</span><span class="o">/</span><span class="n">phabricator</span>
+<span class="n">docker</span> <span class="n">push</span> <span class="n">registry</span><span class="o">.</span><span class="n">f4a</span><span class="o">.</span><span class="n">me</span><span class="o">/</span><span class="n">phabricator</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>Run that image::</dt>
+<dd><dl class="first last docutils">
+<dt>docker service create </dt>
+<dd>--name demo --label &quot;traefik.port=80&quot; -e &quot;GITURL=https:<a class="reference external" href="mailto://secret&#37;&#52;&#48;gogs&#46;tillwitt&#46;de/NXP/homomorphic-encryption-demo&#46;git">//secret<span>&#64;</span>gogs<span>&#46;</span>tillwitt<span>&#46;</span>de/NXP/homomorphic-encryption-demo<span>&#46;</span>git</a>&quot; flex4apps:GQfgCEsjkHC7LRf3Q9PkW4L6onDLtu&#64;backoffice.f4a.me/homomorphic_img</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="query-the-registry">
+<h3>Query the registry<a class="headerlink" href="#query-the-registry" title="Permalink to this headline">¶</a></h3>
+<p>Get the overview of all images:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">registry</span><span class="o">.</span><span class="n">f4a</span><span class="o">.</span><span class="n">me</span><span class="o">/</span><span class="n">v2</span><span class="o">/</span><span class="n">_catalog</span>
+</pre></div>
+</div>
+<p>Get all tags of an image:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">registry</span><span class="o">.</span><span class="n">f4a</span><span class="o">.</span><span class="n">me</span><span class="o">/</span><span class="n">v2</span><span class="o">/</span><span class="n">henc</span><span class="o">/</span><span class="n">tags</span><span class="o">/</span><span class="nb">list</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="private-repository-viewer">
+<h3>Private repository viewer<a class="headerlink" href="#private-repository-viewer" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="alternatives">
+<h3>Alternatives<a class="headerlink" href="#alternatives" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../chapter04_gluster/01_gluster.html" class="btn btn-neutral float-right" title="Gluster" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../chapter02_stateOfTheArt/01_stateOfTheArt.html" class="btn btn-neutral" title="State of the architecture" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Till Witt, Johannes Berg, Alex Nowak.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

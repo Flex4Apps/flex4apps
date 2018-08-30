@@ -1,0 +1,80 @@
+# PULL UPDATE & LAUNCH DOCKER
+#     git pull && docker stack deploy --compose-file docker-compose.yml elk
+
+# REMOVE STACK
+#     docker stack rm drone
+
+# ADD BASIC AUTH and ESCAPE FOR docker-compose usage
+# htpasswd -bBn user password | sed 's/\$/\$\$/g' #escape for docker-compose usage
+
+version: "3.0"
+
+services:
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.2
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=false
+      - http.cors.enabled=true
+      - http.cors.allow-origin=*
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+#      - "discovery.zen.ping.unicast.hosts=elasticsearch"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - /data/local/elasticsearch:/usr/share/elasticsearch/data
+    networks:
+      - traefik-net
+#    command: >
+#      bash -c 'yum install -y iproute && ip addr && IP=$$(ip addr | awk -F"[ /]*" "/inet .*\/24/{print \$$3}") && \
+#          echo publish_host=$$IP && \
+#            exec bin/elasticsearch -Enetwork.bind_host=0.0.0.0 -Enetwork.publish_host=$$IP -Ediscovery.zen.minimum_master_nodes=3 -Ediscovery.zen.ping.unicast.hosts=elasticsearch'
+    deploy:
+      labels:
+        - traefik.port=9200
+        - "traefik.frontend.rule=Host:elastic.f4a.me"
+        - "traefik.frontend.headers.customResponseHeaders='Access-Control-Allow-Origin: *'"
+
+        - traefik.frontend.auth.basic=witt:$$2y$$05$$kOFY7071ilbnpiJNDaIO9e1WeuhHnKtp9Adrevz4r8wJ3b3X1XuqW,sebastian.schmitz:$$apr1$$cCDTHFrI$$m9QaIkyU8d86N4/r/jljJ/,flex4apps:$$2y$$05$$JvvVJToTDOfTzaNA/oIflecuy5l3pct94/3PfCB/g/xq4qZ49baU.,scai.ndv:$$apr1$$FDUP9rVB$$3.oEyn1LEXDCUhcQ5LQza.,christian.pfeiffer:$$apr1$$7efxqZjC$$RKpeAwtFKXjQEA4MzS/K61,f4a:$$2y$$05$$d01dYZVn8MZnIyu.EsSuB.cPDVBCmSSQOaEpt2P2EZTbAtG594pyG
+      placement:
+        constraints: [node.role == manager]
+
+
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.2.2
+    environment:
+      SERVER_NAME: elasticsearch
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+    networks:
+      - traefik-net
+    deploy:
+      labels:
+        - traefik.port=5601
+        - "traefik.frontend.rule=Host:kibana.f4a.me"
+        - traefik.frontend.auth.basic=witt:$$2y$$05$$kOFY7071ilbnpiJNDaIO9e1WeuhHnKtp9Adrevz4r8wJ3b3X1XuqW,sebastian.schmitz:$$apr1$$cCDTHFrI$$m9QaIkyU8d86N4/r/jljJ/,flex4apps:$$2y$$05$$JvvVJToTDOfTzaNA/oIflecuy5l3pct94/3PfCB/g/xq4qZ49baU.,scai.ndv:$$apr1$$FDUP9rVB$$3.oEyn1LEXDCUhcQ5LQza.,christian.pfeiffer:$$apr1$$7efxqZjC$$RKpeAwtFKXjQEA4MzS/K61,f4a:$$2y$$05$$d01dYZVn8MZnIyu.EsSuB.cPDVBCmSSQOaEpt2P2EZTbAtG594pyG
+      placement:
+        constraints: [node.role == manager]
+
+  connector:
+    image: ubuntu:17.10
+    networks:
+      - traefik-net
+    tty: true
+    stdin_open: true
+    ports:
+      - 26:22
+    deploy:
+      labels:
+        - traefik.port=80
+        - "traefik.frontend.rule=Host:connector.f4a.me"
+      placement:
+        constraints: [node.role == manager]
+
+
+networks:
+  traefik-net:
+   external: true

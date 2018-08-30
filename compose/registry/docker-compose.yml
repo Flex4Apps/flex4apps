@@ -1,0 +1,31 @@
+# PULL UPDATE & LAUNCH DOCKER
+#     git pull && docker stack deploy --compose-file docker-compose.yml registry
+
+# REMOVE STACK
+#     docker stack rm registry
+
+# ADD BASIC AUTH and ESCAPE FOR docker-compose usage
+# htpasswd -bBn user password | sed 's/\$/\$\$/g' #escape for docker-compose usage
+
+version: "3"
+
+services:
+  registry:
+    image: registry:latest
+    networks:
+      - traefik-net
+    environment:
+      - "REGISTRY_HTTP_SECRET=myOwnSecret"
+    volumes:
+        - "/data/local/registry:/var/lib/registry"
+    deploy:
+      labels:
+        - traefik.port=5000
+        - "traefik.frontend.rule=Host:registry.f4a.me"
+        - "traefik.frontend.auth.basic=witt:$$2y$$05$$kOFY7071ilbnpiJNDaIO9e1WeuhHnKtp9Adrevz4r8wJ3b3X1XuqW"
+      placement:
+        constraints: [node.role == manager]
+
+networks:
+  traefik-net:
+   external: true

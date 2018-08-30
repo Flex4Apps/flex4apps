@@ -1,0 +1,799 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Applications &mdash; Flex4apps v0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/sphinx-needs/modern.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Flex4apps v0.1 documentation" href="../index.html"/>
+        <link rel="next" title="Security" href="../chapter07_security/01_security.html"/>
+        <link rel="prev" title="Traefik" href="../chapter05_traefik/01_traefik.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Flex4apps
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../chapter01_intro/01_intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter01_intro/01_preparation_bare_metal.html">Automatic server updates &amp; reboots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter02_stateOfTheArt/01_stateOfTheArt.html">State of the architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter03_docker/01_docker.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter04_gluster/01_gluster.html">Gluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter05_traefik/01_traefik.html">Traefik</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-are-applications">What are applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generic-demonstrator">Generic demonstrator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#docker-file">Docker file</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#simple-demo">Simple demo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#grafana">grafana</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-grafana">What is grafana</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-it-up">Setting it up</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#portainer">portainer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#phabricator">Phabricator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#install">install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Docker file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docker-compose">Docker compose</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#mariadb">MariaDB</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-mariadb">What is MariaDB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-set-it-up">How to set it up</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#phpmyadmin">PhpMyAdmin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-phpmyadmin">What is PhpMyAdmin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">How to set it up</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gogs">gogs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-gogs">What is gogs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">How to set it up</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#drone">Drone</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#about-the-software">About the software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Setting it up</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to">How to:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples-and-configuration">Examples and configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#elasticsearch-and-kibana">elasticsearch and kibana</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-elasticsearch-and-kibana">What is  elasticsearch and kibana</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-set-it-up-release-2-4">How to set it up - release 2.4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#release-5-6">Release 5.6</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#kibana">kibana</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-kibana">What is  kibana</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">How to set it up - release 2.4</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter07_security/01_security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter07_security/01_security.html#let-s-encrypt">Let's encrypt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter08_monitoring/01_monitoring.html">Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09_cheatSheet.html">cheat sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_glossary.html">glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Flex4apps</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Applications</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/chapter06_applications/01_applications.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="applications">
+<h1>Applications<a class="headerlink" href="#applications" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-are-applications">
+<h2>What are applications<a class="headerlink" href="#what-are-applications" title="Permalink to this headline">¶</a></h2>
+<p>On the created system applications can be launched. Templates for applications are called images. Running applications are called containers.</p>
+</div>
+<div class="section" id="generic-demonstrator">
+<h2>Generic demonstrator<a class="headerlink" href="#generic-demonstrator" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="docker-file">
+<h3>Docker file<a class="headerlink" href="#docker-file" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># PULL UPDATE &amp; LAUNCH DOCKER</span>
+<span class="c1">#     git pull &amp;&amp; docker stack deploy --compose-file docker-compose.yml demo</span>
+
+<span class="c1"># REMOVE STACK</span>
+<span class="c1">#     docker stack rm demo</span>
+
+<span class="c1"># ADD BASIC AUTH and ESCAPE FOR docker-compose usage</span>
+<span class="c1"># htpasswd -bBn user password | sed &#39;s/\$/\$\$/g&#39; #escape for docker-compose usage</span>
+
+<span class="n">version</span><span class="p">:</span> <span class="s2">&quot;3&quot;</span>
+
+<span class="n">services</span><span class="p">:</span>
+  <span class="n">nginx</span><span class="p">:</span>
+    <span class="n">image</span><span class="p">:</span> <span class="n">kitematic</span><span class="o">/</span><span class="n">hello</span><span class="o">-</span><span class="n">world</span><span class="o">-</span><span class="n">nginx</span>
+    <span class="n">networks</span><span class="p">:</span>
+      <span class="o">-</span> <span class="n">traefik</span><span class="o">-</span><span class="n">net</span>
+    <span class="n">environment</span><span class="p">:</span>
+      <span class="o">-</span> <span class="n">test</span><span class="o">=</span><span class="n">noContent</span>
+    <span class="n">deploy</span><span class="p">:</span>
+      <span class="n">labels</span><span class="p">:</span>
+        <span class="o">-</span> <span class="n">traefik</span><span class="o">.</span><span class="n">port</span><span class="o">=</span><span class="mi">80</span>
+<span class="c1">#        - &quot;traefik.frontend.auth.basic=witt:$$2y$$05$$kOFY7071ilbnpiJNDaIO9e1WeuhHnKtp9Adrevz4r8wJ3b3X1XuqW&quot;</span>
+<span class="c1">#        - &quot;traefik.frontend.auth.basic=ich:$$2y$$05$$jTZv0re2cXmiGrzRxW./8Ofse.6g/AEChvbMGdqYKIMqsr8xW/c&quot;</span>
+<span class="c1">#        - &quot;traefik.frontend.auth.basic=user:$$2y$$05$$IRrTxLpG7ICzroI8Pb5P4.p2rMXGqyeeZM857BJxTFzP5q9W4RYuS&quot;</span>
+        <span class="o">-</span> <span class="s2">&quot;traefik.frontend.rule=Host:demo.f4a.me&quot;</span>
+<span class="n">networks</span><span class="p">:</span>
+  <span class="n">traefik</span><span class="o">-</span><span class="n">net</span><span class="p">:</span>
+   <span class="n">external</span><span class="p">:</span> <span class="n">true</span>
+</pre></div>
+</div>
+<div class="section" id="simple-demo">
+<h4>Simple demo<a class="headerlink" href="#simple-demo" title="Permalink to this headline">¶</a></h4>
+<p>The following application is already working with the current setup.</p>
+<p>To launch an easy demonstrator, lets instantiate a webserver and make it available at demo.f4a.net:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">service</span> <span class="n">create</span> \
+    <span class="o">--</span><span class="n">name</span> <span class="n">demo</span> \
+    <span class="o">--</span><span class="n">label</span> <span class="s2">&quot;traefik.port=80&quot;</span> \
+    <span class="o">--</span><span class="n">network</span> <span class="n">traefik</span><span class="o">-</span><span class="n">net</span> \
+    <span class="n">kitematic</span><span class="o">/</span><span class="n">hello</span><span class="o">-</span><span class="n">world</span><span class="o">-</span><span class="n">nginx</span>
+</pre></div>
+</div>
+<p>Generating a new user with password run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">htpasswd</span> <span class="o">-</span><span class="n">nbm</span> <span class="n">flex4apps</span> <span class="n">password</span>
+</pre></div>
+</div>
+<p>or go to: <a class="reference external" href="http://www.htaccesstools.com/htpasswd-generator/">http://www.htaccesstools.com/htpasswd-generator/</a></p>
+<p>The output will be something like:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>flex4apps:$apr1$XqnUcSgR$39wlPxxyyxPxXZjFb34wo.
+</pre></div>
+</div>
+<p>Example for traefik label usage below. If single quotes are in the password they would need to be escaped.</p>
+<p>To do that close the quoting before it, insert the escaped single quote, and re-open the quoting: <code class="docutils literal"><span class="pre">`'first</span> <span class="pre">part'\''second</span> <span class="pre">part'`</span></code>
+But I dont even know if md5 password contain single quotes.</p>
+<p>How to start the demo service:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">service</span> <span class="n">create</span> \
+    <span class="o">--</span><span class="n">name</span> <span class="n">demopw</span> \
+    <span class="o">--</span><span class="n">label</span> <span class="s2">&quot;traefik.port=80&quot;</span> \
+    <span class="o">--</span><span class="n">label</span> <span class="s1">&#39;traefik.frontend.auth.basic=myName:$apr1$a7R637Ua$TvXp8/lgky5MDLGLacI1e1&#39;</span> \
+    <span class="o">--</span><span class="n">network</span> <span class="n">traefik</span><span class="o">-</span><span class="n">net</span> \
+    <span class="n">kitematic</span><span class="o">/</span><span class="n">hello</span><span class="o">-</span><span class="n">world</span><span class="o">-</span><span class="n">nginx</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="grafana">
+<h2>grafana<a class="headerlink" href="#grafana" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="what-is-grafana">
+<h3>What is grafana<a class="headerlink" href="#what-is-grafana" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="setting-it-up">
+<h3>Setting it up<a class="headerlink" href="#setting-it-up" title="Permalink to this headline">¶</a></h3>
+<p>create the service like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">service</span> <span class="n">create</span> \
+  <span class="o">--</span><span class="n">name</span><span class="o">=</span><span class="n">grafana</span> \
+  <span class="o">--</span><span class="n">network</span> <span class="n">traefik</span><span class="o">-</span><span class="n">net</span> \
+  <span class="o">--</span><span class="n">label</span> <span class="s2">&quot;traefik.port=3000&quot;</span> \
+  <span class="o">--</span><span class="n">mount</span> <span class="nb">type</span><span class="o">=</span><span class="n">bind</span><span class="p">,</span><span class="n">src</span><span class="o">=/</span><span class="n">swarm</span><span class="o">/</span><span class="n">volumes</span><span class="o">/</span><span class="n">grafana</span><span class="p">,</span><span class="n">dst</span><span class="o">=/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">grafana</span> \
+  <span class="o">-</span><span class="n">e</span> <span class="s2">&quot;GF_SECURITY_ADMIN_PASSWORD=someSecretPassword&quot;</span> \
+  <span class="n">grafana</span><span class="o">/</span><span class="n">grafana</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="portainer">
+<h2>portainer<a class="headerlink" href="#portainer" title="Permalink to this headline">¶</a></h2>
+<p>start portainer as a service we first need to create a data directory:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">/</span><span class="n">docker</span><span class="o">/</span><span class="n">portainer</span>
+</pre></div>
+</div>
+<p>To start the container itself:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">service</span> <span class="n">create</span> \
+<span class="o">--</span><span class="n">name</span> <span class="s2">&quot;portainer&quot;</span> \
+<span class="o">--</span><span class="n">constraint</span> <span class="s1">&#39;node.role == manager&#39;</span> \
+<span class="o">--</span><span class="n">network</span> <span class="s2">&quot;traefik-net&quot;</span> <span class="o">--</span><span class="n">replicas</span> <span class="s2">&quot;1&quot;</span> \
+<span class="o">--</span><span class="n">mount</span> <span class="nb">type</span><span class="o">=</span><span class="n">bind</span><span class="p">,</span><span class="n">src</span><span class="o">=/</span><span class="n">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">docker</span><span class="o">.</span><span class="n">sock</span><span class="p">,</span><span class="n">dst</span><span class="o">=/</span><span class="n">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">docker</span><span class="o">.</span><span class="n">sock</span> \
+<span class="o">--</span><span class="n">mount</span> <span class="nb">type</span><span class="o">=</span><span class="n">bind</span><span class="p">,</span><span class="n">src</span><span class="o">=/</span><span class="n">docker</span><span class="o">/</span><span class="n">portainer</span><span class="p">,</span><span class="n">dst</span><span class="o">=/</span><span class="n">data</span> \
+<span class="o">--</span><span class="n">label</span> <span class="s2">&quot;traefik.frontend.rule=Host:portainer.f4a.me&quot;</span> \
+<span class="o">--</span><span class="n">label</span> <span class="s2">&quot;traefik.backend=tool-portainer&quot;</span> \
+<span class="o">--</span><span class="n">label</span> <span class="s2">&quot;traefik.port=9000&quot;</span> \
+<span class="o">--</span><span class="n">label</span> <span class="s2">&quot;traefik.docker.network=traefik-net&quot;</span> \
+<span class="o">--</span><span class="n">reserve</span><span class="o">-</span><span class="n">memory</span> <span class="s2">&quot;20M&quot;</span> <span class="o">--</span><span class="n">limit</span><span class="o">-</span><span class="n">memory</span> <span class="s2">&quot;40M&quot;</span> \
+<span class="o">--</span><span class="n">restart</span><span class="o">-</span><span class="n">condition</span> <span class="s2">&quot;any&quot;</span> <span class="o">--</span><span class="n">restart</span><span class="o">-</span><span class="nb">max</span><span class="o">-</span><span class="n">attempts</span> <span class="s2">&quot;55&quot;</span> \
+<span class="o">--</span><span class="n">update</span><span class="o">-</span><span class="n">delay</span> <span class="s2">&quot;5s&quot;</span> <span class="o">--</span><span class="n">update</span><span class="o">-</span><span class="n">parallelism</span> <span class="s2">&quot;1&quot;</span> \
+<span class="n">portainer</span><span class="o">/</span><span class="n">portainer</span> \
+<span class="o">-</span><span class="n">H</span> <span class="n">unix</span><span class="p">:</span><span class="o">///</span><span class="n">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">docker</span><span class="o">.</span><span class="n">sock</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="phabricator">
+<h2>Phabricator<a class="headerlink" href="#phabricator" title="Permalink to this headline">¶</a></h2>
+<p>The database user needs to be able to create databases</p>
+<div class="section" id="install">
+<h3>install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p class="first">change your password:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sed</span> <span class="o">-</span><span class="n">i</span> <span class="s1">&#39;s/&lt;some secret&gt;/yourPassword/g&#39;</span> <span class="n">Dockerfile</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<ol class="arabic">
+<li><p class="first">build the image with:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">build</span> <span class="o">-</span><span class="n">t</span> <span class="n">phabricator_image</span> <span class="o">.</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">tag and push it to the registry:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">tag</span> <span class="n">phabricator_image</span> <span class="n">registry</span><span class="o">.</span><span class="n">f4a</span><span class="o">.</span><span class="n">me</span><span class="o">/</span><span class="n">phabricator</span>
+<span class="n">docker</span> <span class="n">push</span> <span class="n">registry</span><span class="o">.</span><span class="n">f4a</span><span class="o">.</span><span class="n">me</span><span class="o">/</span><span class="n">phabricator</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">deploy it from the registry by executing the docker-compose:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="n">up</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="id1">
+<h3>Docker file<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span># download base image ubuntu 16.10
+FROM php:7.1-apache
+RUN apt-get update
+RUN apt-get -y install git
+
+WORKDIR /repo
+RUN git clone https://github.com/phacility/libphutil.git
+RUN git clone https://github.com/phacility/arcanist.git
+RUN git clone https://github.com/phacility/phabricator.git
+
+RUN a2enmod rewrite
+RUN chown -R www-data /repo
+RUN chgrp -R www-data /repo
+
+
+# mysqli extension
+RUN docker-php-ext-install -j$(nproc) mysqli
+
+# GD extension
+RUN apt-get -y install libfreetype6-dev libjpeg62-turbo-dev libpng-dev
+RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
+
+RUN pecl install apcu
+RUN apt-get install -y python3-pygments
+RUN apt-get install -y sendmail
+
+WORKDIR /repo/phabricator
+
+# apache config
+RUN sed -i &#39;s#DocumentRoot /var/www/html#DocumentRoot /repo/phabricator/webroot\nRewriteEngine on\nRewriteRule ^(.*)$          /index.php?__path__=$1  [B,L,QSA]\n&lt;Directory &quot;/repo/phabricator/webroot&quot;&gt;\n  Require all granted\n&lt;/Directory&gt;#g&#39; /etc/apache2/sites-enabled/000-default.conf
+
+# ssl reverse proxy - preabmle
+RUN echo \&lt;?php &gt;&gt; support/preamble.php
+RUN echo \$_SERVER[\&#39;REMOTE_ADDR\&#39;] = \$_SERVER[\&#39;HTTP_X_FORWARDED_FOR\&#39;]\; &gt;&gt; support/preamble.php
+RUN echo \$_SERVER[\&#39;HTTPS\&#39;] = true\; &gt;&gt; support/preamble.php
+
+# phabricator configuration
+RUN ./bin/config set mysql.host mariadb.f4a.me
+RUN ./bin/config set mysql.user phabricator
+RUN ./bin/config set mysql.pass ...
+RUN ./bin/config set mysql.port 3306
+RUN ./bin/config set phabricator.base-uri https://phabricator.f4a.me
+
+RUN ./bin/config set phpmailer.smtp-host home.tillwitt.de
+RUN ./bin/config set phpmailer.smtp-protocol TLS
+RUN ./bin/config set phpmailer.smtp-port 587
+RUN ./bin/config set phpmailer.smtp-user notify
+RUN ./bin/config set phpmailer.smtp-password ...
+
+
+ADD start.sh .
+RUN chmod 755 start.sh
+
+ENTRYPOINT ./start.sh &amp;&amp; /bin/bash
+</pre></div>
+</div>
+</div>
+<div class="section" id="docker-compose">
+<h3>Docker compose<a class="headerlink" href="#docker-compose" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># PULL UPDATE &amp; LAUNCH DOCKER</span>
+<span class="c1">#     git pull &amp;&amp; docker stack deploy --with-registry-auth --compose-file docker-compose.yml phabricator</span>
+
+<span class="c1"># REMOVE STACK</span>
+<span class="c1">#     docker stack rm phabricator</span>
+
+<span class="c1"># ADD BASIC AUTH and ESCAPE FOR docker-compose usage</span>
+<span class="c1"># htpasswd -bBn user password | sed &#39;s/\$/\$\$/g&#39; #escape for docker-compose usage</span>
+
+<span class="n">version</span><span class="p">:</span> <span class="s2">&quot;3.1&quot;</span>
+
+
+<span class="n">services</span><span class="p">:</span>
+   <span class="n">web</span><span class="p">:</span>
+     <span class="n">image</span><span class="p">:</span> <span class="n">registry</span><span class="o">.</span><span class="n">f4a</span><span class="o">.</span><span class="n">me</span><span class="o">/</span><span class="n">phabricator</span>
+     <span class="n">networks</span><span class="p">:</span>
+       <span class="o">-</span> <span class="n">traefik</span><span class="o">-</span><span class="n">net</span>
+<span class="c1">#     ports:</span>
+<span class="c1">#       - &quot;80:80&quot;</span>
+     <span class="n">deploy</span><span class="p">:</span>
+      <span class="n">labels</span><span class="p">:</span>
+        <span class="o">-</span> <span class="n">traefik</span><span class="o">.</span><span class="n">port</span><span class="o">=</span><span class="mi">80</span>
+        <span class="o">-</span> <span class="s2">&quot;traefik.frontend.rule=Host:phabricator.f4a.me&quot;</span>
+
+<span class="c1">#   db:</span>
+<span class="c1">#     image: mysql:5.7</span>
+<span class="c1">#     volumes:</span>
+<span class="c1">#       - ./data:/var/lib/mysql</span>
+<span class="c1">#     restart: always</span>
+<span class="c1">#     environment:</span>
+<span class="c1">#       MYSQL_ROOT_PASSWORD: root</span>
+<span class="c1">#       MYSQL_DATABASE: phabricator</span>
+<span class="c1">#       MYSQL_USER: phabricator</span>
+<span class="c1">#       MYSQL_PASSWORD: phabricator</span>
+
+<span class="n">networks</span><span class="p">:</span>
+  <span class="n">traefik</span><span class="o">-</span><span class="n">net</span><span class="p">:</span>
+   <span class="n">external</span><span class="p">:</span> <span class="n">true</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="mariadb">
+<h2>MariaDB<a class="headerlink" href="#mariadb" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="what-is-mariadb">
+<h3>What is MariaDB<a class="headerlink" href="#what-is-mariadb" title="Permalink to this headline">¶</a></h3>
+<p>MariaDB is free and open source relational database system. It was created as a :fork: from MySQL after Oracle started releasing new functionality not as open source anymore and due to the high support cost of MySQL.</p>
+</div>
+<div class="section" id="how-to-set-it-up">
+<h3>How to set it up<a class="headerlink" href="#how-to-set-it-up" title="Permalink to this headline">¶</a></h3>
+<p>As usual make sure that the path for data volume exists:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">/</span><span class="n">swarm</span><span class="o">/</span><span class="n">volumes</span><span class="o">/</span><span class="n">mariadb</span>
+</pre></div>
+</div>
+<p>The initiate the docker service:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">service</span> <span class="n">create</span> \
+      <span class="o">--</span><span class="n">name</span> <span class="n">mariadb</span> \
+      <span class="o">--</span><span class="n">publish</span> <span class="mi">3306</span><span class="p">:</span><span class="mi">3306</span> \
+      <span class="o">--</span><span class="n">network</span> <span class="n">traefik</span><span class="o">-</span><span class="n">net</span> \
+      <span class="o">--</span><span class="n">mount</span> <span class="nb">type</span><span class="o">=</span><span class="n">bind</span><span class="p">,</span><span class="n">src</span><span class="o">=/</span><span class="n">swarm</span><span class="o">/</span><span class="n">volumes</span><span class="o">/</span><span class="n">mariadb</span><span class="p">,</span><span class="n">dst</span><span class="o">=/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mysq</span> \
+      <span class="o">--</span><span class="n">label</span> <span class="s2">&quot;traefik.port=3306&quot;</span> \
+      <span class="o">-</span><span class="n">e</span> <span class="n">MYSQL_ROOT_PASSWORD</span><span class="o">=</span><span class="n">someSecretPassword</span> \
+      <span class="n">mariadb</span><span class="p">:</span><span class="n">latest</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="phpmyadmin">
+<h2>PhpMyAdmin<a class="headerlink" href="#phpmyadmin" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="what-is-phpmyadmin">
+<h3>What is PhpMyAdmin<a class="headerlink" href="#what-is-phpmyadmin" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id2">
+<h3>How to set it up<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>The following command will start up PhpMyAdmin:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">service</span> <span class="n">create</span> \
+    <span class="o">--</span><span class="n">name</span> <span class="n">phpmyadmin</span> \
+    <span class="o">--</span><span class="n">label</span> <span class="s2">&quot;traefik.port=80&quot;</span> \
+    <span class="o">--</span><span class="n">network</span> <span class="n">traefik</span><span class="o">-</span><span class="n">net</span> \
+    <span class="o">-</span><span class="n">e</span> <span class="n">ALLOW_ARBITRARY</span><span class="o">=</span><span class="mi">1</span> \
+    <span class="n">nazarpc</span><span class="o">/</span><span class="n">phpmyadmin</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="gogs">
+<h2>gogs<a class="headerlink" href="#gogs" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="what-is-gogs">
+<h3>What is gogs<a class="headerlink" href="#what-is-gogs" title="Permalink to this headline">¶</a></h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">todo:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id3">
+<h3>How to set it up<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>Pull image from Docker Hub.</p>
+<p>very strange installation. First need to use --publish 3000:3000 and connect direct for install. Then remove instance and also remove published port. This is certainly something I need to review.</p>
+<p>create the data volume for gogs:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">/</span><span class="n">swarm</span><span class="o">/</span><span class="n">volumes</span><span class="o">/</span><span class="n">gogs</span>
+</pre></div>
+</div>
+<p>start the service:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">service</span> <span class="n">create</span> \
+    <span class="o">--</span><span class="n">name</span> <span class="n">gogs</span> \
+    <span class="o">--</span><span class="n">mount</span> <span class="nb">type</span><span class="o">=</span><span class="n">bind</span><span class="p">,</span><span class="n">src</span><span class="o">=/</span><span class="n">swarm</span><span class="o">/</span><span class="n">volumes</span><span class="o">/</span><span class="n">gogs</span><span class="p">,</span><span class="n">dst</span><span class="o">=/</span><span class="n">data</span> \
+    <span class="o">--</span><span class="n">label</span> <span class="s2">&quot;traefik.port=3000&quot;</span> \
+    <span class="o">--</span><span class="n">network</span> <span class="n">traefik</span><span class="o">-</span><span class="n">net</span> \
+    <span class="n">gogs</span><span class="o">/</span><span class="n">gogs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="drone">
+<h2>Drone<a class="headerlink" href="#drone" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="about-the-software">
+<h3>About the software<a class="headerlink" href="#about-the-software" title="Permalink to this headline">¶</a></h3>
+<p>A continuous integration server which is open source, and tightly integrates with open source git platforms like gogs or services like github.</p>
+</div>
+<div class="section" id="id4">
+<h3>Setting it up<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>A good installation procedure is available here at <a class="reference external" href="http://docs.drone.io/install-for-gogs/">http://docs.drone.io/install-for-gogs/</a>. The corresponding commands for F4A are below:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> \
+  <span class="o">--</span><span class="n">name</span> <span class="n">drone</span> \
+  <span class="o">--</span><span class="n">label</span> <span class="s2">&quot;traefik.port=8000&quot;</span> \
+  <span class="o">--</span><span class="n">publish</span> <span class="mi">8000</span><span class="p">:</span><span class="mi">8000</span> \
+  <span class="o">--</span><span class="n">publish</span> <span class="mi">9000</span><span class="p">:</span><span class="mi">9000</span> \
+  <span class="o">-</span><span class="n">e</span> <span class="n">DRONE_OPEN</span><span class="o">=</span><span class="n">true</span> \
+  <span class="o">-</span><span class="n">e</span> <span class="n">DRONE_HOST</span><span class="o">=</span><span class="n">drone</span><span class="o">.</span><span class="n">f4a</span><span class="o">.</span><span class="n">me</span> \
+  <span class="o">-</span><span class="n">e</span> <span class="n">DRONE_GOGS</span><span class="o">=</span><span class="n">true</span> \
+  <span class="o">-</span><span class="n">e</span> <span class="n">DRONE_GOGS_URL</span><span class="o">=</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">gogs</span><span class="o">.</span><span class="n">tillwitt</span><span class="o">.</span><span class="n">de</span> \
+  <span class="o">-</span><span class="n">e</span> <span class="n">DRONE_SECRET</span><span class="o">=&lt;</span><span class="n">some</span> <span class="n">secret</span><span class="o">&gt;</span> \
+  <span class="n">drone</span><span class="o">/</span><span class="n">drone</span><span class="p">:</span><span class="mf">0.8</span>
+
+<span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">/</span><span class="n">swarm</span><span class="o">/</span><span class="n">volumes</span><span class="o">/</span><span class="n">drone</span>
+
+<span class="n">docker</span> <span class="n">service</span> <span class="n">create</span> \
+  <span class="o">--</span><span class="n">name</span> <span class="n">drone</span> \
+  <span class="o">--</span><span class="n">label</span> <span class="s2">&quot;traefik.port=8000&quot;</span> \
+  <span class="o">--</span><span class="n">label</span> <span class="s2">&quot;traefik.docker.network=traefik-net&quot;</span> \
+  <span class="o">--</span><span class="n">network</span> <span class="n">traefik</span><span class="o">-</span><span class="n">net</span> \
+  <span class="o">--</span><span class="n">mount</span> <span class="nb">type</span><span class="o">=</span><span class="n">bind</span><span class="p">,</span><span class="n">src</span><span class="o">=/</span><span class="n">swarm</span><span class="o">/</span><span class="n">volumes</span><span class="o">/</span><span class="n">drone</span><span class="p">,</span><span class="n">dst</span><span class="o">=/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">drone</span><span class="o">/</span> \
+  <span class="o">--</span><span class="n">publish</span> <span class="mi">8000</span><span class="p">:</span><span class="mi">8000</span> \
+  <span class="o">--</span><span class="n">publish</span> <span class="mi">9000</span><span class="p">:</span><span class="mi">9000</span> \
+  <span class="o">-</span><span class="n">e</span> <span class="n">DRONE_OPEN</span><span class="o">=</span><span class="n">true</span> \
+  <span class="o">-</span><span class="n">e</span> <span class="n">DRONE_HOST</span><span class="o">=</span><span class="n">drone</span><span class="o">.</span><span class="n">f4a</span><span class="o">.</span><span class="n">me</span> \
+  <span class="o">-</span><span class="n">e</span> <span class="n">DRONE_GOGS</span><span class="o">=</span><span class="n">true</span> \
+  <span class="o">-</span><span class="n">e</span> <span class="n">DRONE_GOGS_URL</span><span class="o">=</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">gogs</span><span class="o">.</span><span class="n">tillwitt</span><span class="o">.</span><span class="n">de</span> \
+  <span class="o">-</span><span class="n">e</span> <span class="n">DRONE_SECRET</span><span class="o">=&lt;</span><span class="n">some</span> <span class="n">secret</span><span class="o">&gt;</span> \
+  <span class="o">-</span><span class="n">e</span> <span class="n">DRONE_ADMIN</span><span class="o">=</span><span class="n">witt</span> \
+  <span class="n">drone</span><span class="o">/</span><span class="n">drone</span><span class="p">:</span><span class="mf">0.8</span>
+
+<span class="n">docker</span> <span class="n">service</span> <span class="n">create</span> \
+  <span class="o">--</span><span class="n">name</span> <span class="n">drone_agent</span> \
+  <span class="o">--</span><span class="n">mount</span> <span class="nb">type</span><span class="o">=</span><span class="n">bind</span><span class="p">,</span><span class="n">src</span><span class="o">=/</span><span class="n">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">docker</span><span class="o">.</span><span class="n">sock</span><span class="p">,</span><span class="n">dst</span><span class="o">=/</span><span class="n">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">docker</span><span class="o">.</span><span class="n">sock</span> \
+  <span class="o">--</span><span class="n">network</span> <span class="n">traefik</span><span class="o">-</span><span class="n">net</span> \
+  <span class="o">-</span><span class="n">e</span> <span class="n">DRONE_SERVER</span><span class="o">=</span><span class="n">drone</span><span class="p">:</span><span class="mi">9000</span> \
+  <span class="o">-</span><span class="n">e</span> <span class="n">DRONE_SECRET</span><span class="o">=&lt;</span><span class="n">some</span> <span class="n">secret</span><span class="o">&gt;</span> \
+  <span class="n">drone</span><span class="o">/</span><span class="n">agent</span><span class="p">:</span><span class="mf">0.8</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to">
+<h3>How to:<a class="headerlink" href="#how-to" title="Permalink to this headline">¶</a></h3>
+<p>Once setup, with in this case gogs, you can log into the web interface. After a short sync all repositories should be visible. Activate drone.io for the corresponding repository.</p>
+<p>To tell drone.io what to execute you need to add a <code class="docutils literal"><span class="pre">.drone.yml</span></code> to your repository. Examples are below.</p>
+</div>
+<div class="section" id="examples-and-configuration">
+<h3>Examples and configuration<a class="headerlink" href="#examples-and-configuration" title="Permalink to this headline">¶</a></h3>
+<p>example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">image</span><span class="p">:</span> <span class="n">dockerfile</span><span class="o">/</span><span class="n">nginx</span>
+<span class="n">script</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">echo</span> <span class="n">hello</span> <span class="n">world</span>
+
+  <span class="n">publish</span><span class="p">:</span>
+    <span class="n">docker</span><span class="p">:</span>
+      <span class="n">registry</span><span class="p">:</span> <span class="n">registry</span><span class="o">.</span><span class="n">f4a</span><span class="o">.</span><span class="n">me</span>
+      <span class="n">email</span><span class="p">:</span> <span class="n">witt</span><span class="nd">@f4a</span><span class="o">.</span><span class="n">me</span>
+      <span class="n">repo</span><span class="p">:</span> <span class="n">registry</span><span class="o">.</span><span class="n">f4a</span><span class="o">.</span><span class="n">me</span><span class="o">/</span><span class="n">flex4apps</span><span class="o">/</span><span class="n">flex4apps</span><span class="o">/</span><span class="n">homomorphic</span><span class="o">-</span><span class="n">encryption</span>
+      <span class="n">file</span><span class="p">:</span> <span class="n">homomorphic</span><span class="o">-</span><span class="n">encryption</span><span class="o">/</span><span class="n">Dockerfile</span>
+      <span class="n">context</span><span class="p">:</span> <span class="n">homomorphic</span><span class="o">-</span><span class="n">encryption</span>
+      <span class="n">tag</span><span class="p">:</span> <span class="n">latest</span>
+      <span class="n">secrets</span><span class="p">:</span> <span class="p">[</span> <span class="n">docker_username</span><span class="p">,</span> <span class="n">docker_password</span> <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="elasticsearch-and-kibana">
+<h2>elasticsearch and kibana<a class="headerlink" href="#elasticsearch-and-kibana" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="what-is-elasticsearch-and-kibana">
+<h3>What is  elasticsearch and kibana<a class="headerlink" href="#what-is-elasticsearch-and-kibana" title="Permalink to this headline">¶</a></h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">todo:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="how-to-set-it-up-release-2-4">
+<h3>How to set it up - release 2.4<a class="headerlink" href="#how-to-set-it-up-release-2-4" title="Permalink to this headline">¶</a></h3>
+<p>Inspired by <a class="reference external" href="https://sematext.com/blog/docker-elasticsearch-swarm/">https://sematext.com/blog/docker-elasticsearch-swarm/</a>. Issue the following command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">service</span> <span class="n">create</span> \
+   <span class="o">--</span><span class="n">name</span> <span class="n">esc24</span> \
+   <span class="o">--</span><span class="n">label</span> <span class="s2">&quot;traefik.port=9200&quot;</span> \
+   <span class="o">--</span><span class="n">label</span> <span class="s1">&#39;traefik.frontend.auth.basic=flex4apps:$apr1$G9e4rgPu$jbn2AAk2F.OeGnRVFnIR/1&#39;</span> \
+   <span class="o">--</span><span class="n">network</span> <span class="n">traefik</span><span class="o">-</span><span class="n">net</span> \
+   <span class="o">--</span><span class="n">replicas</span> <span class="mi">3</span> \
+   <span class="o">--</span><span class="n">endpoint</span><span class="o">-</span><span class="n">mode</span> <span class="n">dnsrr</span> \
+   <span class="o">--</span><span class="n">update</span><span class="o">-</span><span class="n">parallelism</span> <span class="mi">1</span> \
+   <span class="o">--</span><span class="n">update</span><span class="o">-</span><span class="n">delay</span> <span class="mi">60</span><span class="n">s</span> \
+   <span class="o">--</span><span class="n">mount</span> <span class="nb">type</span><span class="o">=</span><span class="n">volume</span><span class="p">,</span><span class="n">source</span><span class="o">=</span><span class="n">esc24</span><span class="p">,</span><span class="n">target</span><span class="o">=/</span><span class="n">data</span> \
+ <span class="n">elasticsearch</span><span class="p">:</span><span class="mf">2.4</span> \
+   <span class="n">elasticsearch</span> \
+   <span class="o">-</span><span class="n">Des</span><span class="o">.</span><span class="n">discovery</span><span class="o">.</span><span class="n">zen</span><span class="o">.</span><span class="n">ping</span><span class="o">.</span><span class="n">multicast</span><span class="o">.</span><span class="n">enabled</span><span class="o">=</span><span class="n">false</span> \
+   <span class="o">-</span><span class="n">Des</span><span class="o">.</span><span class="n">discovery</span><span class="o">.</span><span class="n">zen</span><span class="o">.</span><span class="n">ping</span><span class="o">.</span><span class="n">unicast</span><span class="o">.</span><span class="n">hosts</span><span class="o">=</span><span class="n">esc24</span> \
+   <span class="o">-</span><span class="n">Des</span><span class="o">.</span><span class="n">gateway</span><span class="o">.</span><span class="n">expected_nodes</span><span class="o">=</span><span class="mi">3</span> \
+   <span class="o">-</span><span class="n">Des</span><span class="o">.</span><span class="n">discovery</span><span class="o">.</span><span class="n">zen</span><span class="o">.</span><span class="n">minimum_master_nodes</span><span class="o">=</span><span class="mi">2</span> \
+   <span class="o">-</span><span class="n">Des</span><span class="o">.</span><span class="n">gateway</span><span class="o">.</span><span class="n">recover_after_nodes</span><span class="o">=</span><span class="mi">2</span> \
+   <span class="o">-</span><span class="n">Des</span><span class="o">.</span><span class="n">network</span><span class="o">.</span><span class="n">bind</span><span class="o">=</span><span class="n">_eth0</span><span class="p">:</span><span class="n">ipv4_</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="release-5-6">
+<h3>Release 5.6<a class="headerlink" href="#release-5-6" title="Permalink to this headline">¶</a></h3>
+<p>Inspired by <a class="reference external" href="https://github.com/elastic/elasticsearch-docker/issues/91">https://github.com/elastic/elasticsearch-docker/issues/91</a> and <a class="reference external" href="https://idle.run/elasticsearch-cluster">https://idle.run/elasticsearch-cluster</a></p>
+<p>The host systems have to be prepared to run elasticsearch in a docker:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="n">vm</span><span class="o">.</span><span class="n">max_map_count</span><span class="o">=</span><span class="mi">262144</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sysctl</span><span class="o">.</span><span class="n">conf</span> <span class="o">&amp;&amp;</span> <span class="n">sysctl</span> <span class="o">--</span><span class="n">system</span> <span class="o">&amp;&amp;</span> <span class="n">sysctl</span> <span class="n">vm</span><span class="o">.</span><span class="n">max_map_count</span>
+</pre></div>
+</div>
+<p>The issue the following command to start three instances of elasticsearch:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">service</span> <span class="n">create</span> \
+  <span class="o">--</span><span class="n">replicas</span> <span class="mi">3</span> \
+  <span class="o">--</span><span class="n">name</span> <span class="n">esc56</span> \
+  <span class="o">--</span><span class="n">label</span> <span class="s2">&quot;traefik.port=9200&quot;</span> \
+  <span class="o">--</span><span class="n">label</span> <span class="s1">&#39;traefik.frontend.auth.basic=flex4apps:$apr1$G9e4rgPu$jbn2AAk2F.OeGnRVFnIR/1&#39;</span> \
+  <span class="o">--</span><span class="n">mount</span> <span class="nb">type</span><span class="o">=</span><span class="n">volume</span><span class="p">,</span><span class="n">source</span><span class="o">=</span><span class="n">esc56</span><span class="p">,</span><span class="n">target</span><span class="o">=/</span><span class="n">data</span> \
+  <span class="o">--</span><span class="n">network</span> <span class="n">traefik</span><span class="o">-</span><span class="n">net</span> \
+  <span class="n">elasticsearch</span><span class="p">:</span><span class="mf">5.6</span><span class="o">.</span><span class="mi">4</span> <span class="n">bash</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;ip addr &amp;&amp; IP=$(ip addr | awk -F&quot;[ /]*&quot; &quot;/inet .*\/24/{print \$3}&quot;) &amp;&amp; </span><span class="se">\</span>
+<span class="s1">      echo publish_host=$IP &amp;&amp; </span><span class="se">\</span>
+<span class="s1">      exec /docker-entrypoint.sh -Enetwork.bind_host=0.0.0.0 -Enetwork.publish_host=$IP -Ediscovery.zen.minimum_master_nodes=2 -Ediscovery.zen.ping.unicast.hosts=tasks.esc56&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="kibana">
+<h2>kibana<a class="headerlink" href="#kibana" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="what-is-kibana">
+<h3>What is  kibana<a class="headerlink" href="#what-is-kibana" title="Permalink to this headline">¶</a></h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">todo:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id5">
+<h3>How to set it up - release 2.4<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>Issue the following command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">service</span> <span class="n">create</span> \
+   <span class="o">--</span><span class="n">name</span> <span class="n">kb56</span> \
+   <span class="o">--</span><span class="n">label</span> <span class="s2">&quot;traefik.port=5601&quot;</span> \
+   <span class="o">--</span><span class="n">label</span> <span class="s1">&#39;traefik.frontend.auth.basic=flex4apps:$apr1$G9e4rgPu$jbn2AAk2F.OeGnRVFnIR/1&#39;</span> \
+   <span class="o">--</span><span class="n">network</span> <span class="n">traefik</span><span class="o">-</span><span class="n">net</span> \
+   <span class="o">-</span><span class="n">e</span> <span class="s2">&quot;ELASTICSEARCH_URL=http://esc56:9200&quot;</span> \
+   <span class="n">kibana</span><span class="p">:</span><span class="mf">5.6</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="next-steps">
+<h2>Next steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
+<p>The following applications will be considered for next steps:</p>
+<ul class="simple">
+<li>drone.io</li>
+<li><a class="reference external" href="https://codeship.com">https://codeship.com</a></li>
+<li>pritunl</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../chapter07_security/01_security.html" class="btn btn-neutral float-right" title="Security" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../chapter05_traefik/01_traefik.html" class="btn btn-neutral" title="Traefik" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Till Witt, Johannes Berg, Alex Nowak.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

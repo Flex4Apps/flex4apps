@@ -1,0 +1,40 @@
+# PULL UPDATE & LAUNCH DOCKER
+#     git pull && docker stack deploy --compose-file docker-compose.yml mariadb
+
+# REMOVE STACK
+#     docker stack rm mariadb
+
+# ADD BASIC AUTH and ESCAPE FOR docker-compose usage
+# htpasswd -bBn user password | sed 's/\$/\$\$/g' #escape for docker-compose usage
+
+version: "3"
+
+services:
+  server:
+    image: mariadb:latest
+    networks:
+      traefik-net:
+    volumes:
+      - /data/shared/mariadb=/var/lib/mysq
+    environment:
+      - MYSQL_ROOT_PASSWORD=someSecretPassword
+    deploy:
+      labels:
+        - traefik.port=3306
+        - "traefik.frontend.rule=Host:mariadb.f4a.me"
+
+  phpmyadmin:
+    image: nazarpc/phpmyadmin
+    networks:
+      traefik-net:
+    environment:
+      - MYSQL_HOST=mariadb_server:3306
+    deploy:
+      labels:
+        - traefik.port=80
+        - "traefik.frontend.rule=Host:phpmyadmin.f4a.me"
+
+networks:
+  default:
+  traefik-net:
+   external: true

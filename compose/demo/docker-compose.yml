@@ -1,0 +1,28 @@
+# PULL UPDATE & LAUNCH DOCKER
+#     git pull && docker stack deploy --compose-file docker-compose.yml demo
+
+# REMOVE STACK
+#     docker stack rm demo
+
+# ADD BASIC AUTH and ESCAPE FOR docker-compose usage
+# htpasswd -bBn user password | sed 's/\$/\$\$/g' #escape for docker-compose usage
+
+version: "3"
+
+services:
+  nginx:
+    image: kitematic/hello-world-nginx
+    networks:
+      - traefik-net
+    environment:
+      - test=noContent
+    deploy:
+      labels:
+        - traefik.port=80
+#        - "traefik.frontend.auth.basic=witt:$$2y$$05$$kOFY7071ilbnpiJNDaIO9e1WeuhHnKtp9Adrevz4r8wJ3b3X1XuqW"
+#        - "traefik.frontend.auth.basic=ich:$$2y$$05$$jTZv0re2cXmiGrzRxW./8Ofse.6g/AEChvbMGdqYKIMqsr8xW/c"
+#        - "traefik.frontend.auth.basic=user:$$2y$$05$$IRrTxLpG7ICzroI8Pb5P4.p2rMXGqyeeZM857BJxTFzP5q9W4RYuS"
+        - "traefik.frontend.rule=Host:demo.f4a.me"
+networks:
+  traefik-net:
+   external: true

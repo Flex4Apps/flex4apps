@@ -1,0 +1,29 @@
+# Javiers homomorphic encryption demo
+
+# docker login registry.f4a.me -u witt -p ...
+# PULL UPDATE & LAUNCH DOCKER
+#     git pull && docker stack deploy --with-registry-auth --compose-file docker-compose.yml henc
+
+# REMOVE STACK
+#     docker stack rm henc
+
+# ADD BASIC AUTH and ESCAPE FOR docker-compose usage
+# htpasswd -bBn user password | sed 's/\$/\$\$/g' #escape for docker-compose usage
+
+version: "3.1"
+
+services:
+  henc:
+    image: registry.f4a.me/henc:latest
+    networks:
+      - traefik-net
+    deploy:
+      labels:
+        - traefik.port=80
+        - "traefik.frontend.rule=Host:henc.f4a.me"
+      placement:
+        constraints: [node.role == manager]
+
+networks:
+  traefik-net:
+   external: true

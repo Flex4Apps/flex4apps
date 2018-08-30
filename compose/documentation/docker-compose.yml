@@ -1,0 +1,30 @@
+# Flex4Apps documentation
+
+# PULL UPDATE & LAUNCH DOCKER
+#     git pull && docker stack deploy --with-registry-auth --compose-file docker-compose.yml documentation
+
+# REMOVE STACK
+#     docker stack rm documentation
+
+# ADD BASIC AUTH and ESCAPE FOR docker-compose usage
+# htpasswd -bBn user password | sed 's/\$/\$\$/g' #escape for docker-compose usage
+
+version: "3.1"
+
+services:
+  nginx:
+    image: registry.f4a.me/documentation
+    networks:
+      - traefik-net
+    deploy:
+      labels:
+        - traefik.port=80
+        - "traefik.frontend.rule=Host:documentation.f4a.me"
+      replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 30s
+
+networks:
+  traefik-net:
+   external: true

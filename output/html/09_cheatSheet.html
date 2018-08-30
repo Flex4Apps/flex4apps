@@ -1,0 +1,304 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>cheat sheet &mdash; Flex4apps v0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/sphinx-needs/modern.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Flex4apps v0.1 documentation" href="index.html"/>
+        <link rel="next" title="glossary" href="10_glossary.html"/>
+        <link rel="prev" title="Monitoring" href="chapter08_monitoring/01_monitoring.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Flex4apps
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="chapter01_intro/01_intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter01_intro/01_preparation_bare_metal.html">Automatic server updates &amp; reboots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter02_stateOfTheArt/01_stateOfTheArt.html">State of the architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter03_docker/01_docker.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter04_gluster/01_gluster.html">Gluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter05_traefik/01_traefik.html">Traefik</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter06_applications/01_applications.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter07_security/01_security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter07_security/01_security.html#let-s-encrypt">Let's encrypt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter08_monitoring/01_monitoring.html">Monitoring</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">cheat sheet</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#clean-up-of-containers">Clean up of containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dos-and-donts">Dos and donts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#updating-this-documentation">Updating this documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="10_glossary.html">glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Flex4apps</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>cheat sheet</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/09_cheatSheet.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cheat-sheet">
+<h1>cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="clean-up-of-containers">
+<h2>Clean up of containers<a class="headerlink" href="#clean-up-of-containers" title="Permalink to this headline">¶</a></h2>
+<p>remove all exited containers (should be run on each node):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>docker rm $(docker ps -q -f status=exited)
+</pre></div>
+</div>
+<p>attach bash to a running container:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">docker</span> <span class="n">exec</span> <span class="o">-</span><span class="n">i</span> <span class="o">-</span><span class="n">t</span> <span class="n">containername</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dos-and-donts">
+<h2>Dos and donts<a class="headerlink" href="#dos-and-donts" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://community.spiceworks.com/topic/1832873-a-list-of-don-ts-for-docker-containers">https://community.spiceworks.com/topic/1832873-a-list-of-don-ts-for-docker-containers</a></p>
+<ol class="arabic simple">
+<li>Don’t store data in containers</li>
+<li>Don’t ship your application in two pieces</li>
+<li>Don’t create large images</li>
+<li>Don’t use a single layer image</li>
+<li>Don’t create images from running containers</li>
+<li>Don’t use only the “latest” tag</li>
+<li>Don’t run more than one process in a single container</li>
+<li>Don’t store credentials in the image. Use environment variables</li>
+<li>Don’t run processes as a root user</li>
+<li>Don’t rely on IP addresses</li>
+</ol>
+</div>
+<div class="section" id="updating-this-documentation">
+<h2>Updating this documentation<a class="headerlink" href="#updating-this-documentation" title="Permalink to this headline">¶</a></h2>
+<p>issue the following command to update this documentation:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">name</span> <span class="n">sphinxneeds</span> <span class="o">--</span><span class="n">rm</span> \
+      <span class="o">-</span><span class="n">e</span> <span class="s2">&quot;Project=Flex4apps&quot;</span> \
+      <span class="o">-</span><span class="n">e</span> <span class="s2">&quot;Author=Till Witt, Johannes Berg, Alex Nowak&quot;</span> \
+      <span class="o">-</span><span class="n">e</span> <span class="s2">&quot;Version=v0.1&quot;</span> \
+      <span class="o">-</span><span class="n">v</span> <span class="s2">&quot;$(pwd)/compose:/project/compose&quot;</span> \
+      <span class="o">-</span><span class="n">v</span> <span class="s2">&quot;$(pwd)/docs:/project/input&quot;</span> \
+      <span class="o">-</span><span class="n">v</span> <span class="s2">&quot;$(pwd)/output:/project/output&quot;</span> \
+      <span class="o">-</span><span class="n">i</span> <span class="o">-</span><span class="n">t</span> <span class="n">tlwt</span><span class="o">/</span><span class="n">sphinxneeds</span><span class="o">-</span><span class="n">docker</span>
+
+
+<span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">name</span> <span class="n">buildTheDocs</span> <span class="o">--</span><span class="n">rm</span> \
+      <span class="o">-</span><span class="n">e</span> <span class="s2">&quot;Project=Flex4apps&quot;</span> \
+      <span class="o">-</span><span class="n">e</span> <span class="s2">&quot;Author=Till Witt, Johannes Berg, Alex Nowak&quot;</span> \
+      <span class="o">-</span><span class="n">e</span> <span class="s2">&quot;Version=v0.1&quot;</span> \
+      <span class="o">-</span><span class="n">v</span> <span class="s2">&quot;$(pwd)/compose:/project/compose&quot;</span> \
+      <span class="o">-</span><span class="n">v</span> <span class="s2">&quot;$(pwd)/docs:/project/input&quot;</span> \
+      <span class="o">-</span><span class="n">v</span> <span class="s2">&quot;$(pwd)/output:/project/output&quot;</span> \
+      <span class="o">-</span><span class="n">i</span> <span class="o">-</span><span class="n">t</span> <span class="n">sphinx_image</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="10_glossary.html" class="btn btn-neutral float-right" title="glossary" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="chapter08_monitoring/01_monitoring.html" class="btn btn-neutral" title="Monitoring" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Till Witt, Johannes Berg, Alex Nowak.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'v0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
