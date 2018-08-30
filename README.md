@@ -1,11 +1,7 @@
 Flex4apps
 =========
 
-the project documentation can be found at:
-
-* https://documentation.f4a.me
-* or as PDF: https://gogs.tillwitt.de/NXP/flex4apps/src/master/output/pdf/Flex4apps.pdf
-
+the project documentation can be found at in the docs folder.
 
 Updating the doc
 ----------------
