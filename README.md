@@ -1,7 +1,7 @@
 Flex4apps
 =========
 
-the project documentation can be found at in the docs folder.
+the project documentation can be found in the docs folder.
 
 Updating the doc
 ----------------
