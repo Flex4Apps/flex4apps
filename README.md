@@ -1,9 +1,12 @@
 Flex4apps
 =========
 
-the project documentation can be found in the docs folder.
+the documentation can be found at readthedocs:
 
-Updating the doc
+[![Documentation Status](https://readthedocs.org/projects/f4a/badge/?version=latest)](https://f4a.readthedocs.io/en/latest/?badge=latest)
+
+
+Building the docs locally
 ----------------
 
 execute the following command in the base directory of the repository ...
