@@ -5,26 +5,29 @@ Flex4apps - cloud infrastructure
    :maxdepth: 2
    :caption: Contents:
 
-   chapter01_intro/01_intro.rst
-   chapter01_intro/01_preparation_bare_metal.rst
+   chapter01_intro/_structure.rst
 
-   chapter02_stateOfTheArt/01_stateOfTheArt.rst
+   chapter02_stateOfTheArt/_structure.rst
 
-   chapter03_docker/01_docker.rst
+   chapter03_gettingStarted/_structure.rst
 
+   chapter04_architecture/_structure.rst
 
-   chapter04_gluster/01_gluster.rst
+   chapter05_docker/_structure.rst
 
-   chapter05_traefik/01_traefik.rst
+   chapter06_serverless/_structure.rst
 
-   chapter06_applications/01_applications.rst
+   chapter07_apiDataFlow/_structure.rst
 
-   chapter07_security/01_security.rst
+   chapter08_serviceSolutionProvider/_structure.rst
 
-   chapter08_monitoring/01_monitoring.rst
+   chapter09_demonstrators/_structure.rst
 
-   09_cheatSheet.rst
-   10_glossary.rst
+   chapter10_references/_structure.rst
+
+   chapter11_thanks/_structure.rst
+
+   chapter12_etc/_structure.rst
 
 
 Indices and tables

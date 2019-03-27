@@ -29,6 +29,6 @@ Even though docker runs on many platforms we decided to operate based on an Ubun
 
 Docker only achieves the independence with regards to the stateless execution of services like webservers, mailservers and other services. To provide persistent storage a file server / cluster and a database server is needed.
 
-.. uml:: 01_architecture.uml
+.. uml:: architecture.uml
 .. _Docker: http://www.docker.com
 .. _Flex4apps: https://www.flex4apps-itea3.org
