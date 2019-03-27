@@ -1,1 +1,1 @@
-.. include:: serviceSolutionProvider.rst
+.. include:: serviceSolutionProviders.rst
