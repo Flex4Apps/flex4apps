@@ -19,7 +19,7 @@ Flex4apps - cloud infrastructure
 
    chapter07_apiDataFlow/_structure.rst
 
-   chapter08_serviceSolutionProvider/_structure.rst
+   chapter08_serviceSolutionProviders/_structure.rst
 
    chapter09_demonstrators/_structure.rst
 
