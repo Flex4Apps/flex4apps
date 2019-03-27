@@ -17,3 +17,10 @@ Repository Overview
 -------------------
 * docs - The main bulk of the repository. Start here when you are attempting to use the results of this project.
 * src - Example code and Scripts for the various scenarios discussed in the documentation.
+
+Related Repositories
+--------------------
+* Project [website](https://github.com/Flex4Apps/flex4apps.github.io) source code 
+* Genode Operating System [Genode](https://github.com/Flex4Apps/genode) and [Genode-World](https://github.com/Flex4Apps/genode-world)
+* MQTT Broker [Mosquitto](https://github.com/Flex4Apps/mosquitto)
+* Grafana inside a AWS VPC on Fargate [Grafana-VPC](https://github.com/Flex4Apps/grafana-fargate-vpc)
