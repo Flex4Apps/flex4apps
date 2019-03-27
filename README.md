@@ -12,3 +12,8 @@ Build status
 ------------
 
 [![Documentation Status](https://readthedocs.org/projects/f4a/badge/?version=latest)](https://f4a.readthedocs.io/en/latest/?badge=latest)
+
+Repository Overview
+-------------------
+* docs - The main bulk of the repository. Start here when you are attempting to use the results of this project.
+* src - Example code and Scripts for the various scenarios discussed in the documentation.
