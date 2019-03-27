@@ -1,7 +1,13 @@
 Flex4apps
 =========
 
-the documentation can be found at readthedocs:
+This is the main git repository for the [ITEA3](https://itea3.org/) [Flex4Apps project](https://itea3.org/community/project/flex4apps/basics.html).
+More information can be found on the [website](https://www.flex4apps-itea3.org/)
+
+All the documentation and howto guides in this repository can be best read at [f4a.readthedocs.io](https://f4a.readthedocs.io/en/latest/?badge=latest).
+
+Build status
+------------
 
 [![Documentation Status](https://readthedocs.org/projects/f4a/badge/?version=latest)](https://f4a.readthedocs.io/en/latest/?badge=latest)
 
