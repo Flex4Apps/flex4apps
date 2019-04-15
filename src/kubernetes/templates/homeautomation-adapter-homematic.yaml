@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homeautomation-adapter-homematic
+  labels:
+    app: homeautomation-adapter-homematic
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homeautomation-adapter-homematic
+  template:
+    metadata:
+      labels:
+        app: homeautomation-adapter-homematic
+    spec:
+      containers:
+      - name: homeautomation-adapter-homematic
+        image: docker.evermind.de/flex4apps/homeautomation-adapter-homematic:latest
+        imagePullPolicy: Always
+        env:
+          - name: TZ
+            value: "Europe/Berlin"
+          - name: REDIS_HOST
+            value: "redis"
+          - name: REDIS_PORT
+            value: "6379"
+          - name: MQTT_BROKER_HOST
+            value: "ssl://mosquitto"
+          - name: MQTT_BROKER_PORT
+            value: "8883"
+          - name: SERVICE_URL
+            value: http://homeautomation-service:8080/service/intern
+        ports:
+        - containerPort: 8080
+          name: http
+        volumeMounts:
+          - name: ssl-ca
+            mountPath: /ssl
+            readOnly: true
+      volumes:
+        - name: ssl-ca
+          configMap:
+            name: f4a-ssl
+            items:
+              - key: ca.crt
+                path: ca.crt
+      imagePullSecrets:
+        - name: docker-evermind-de
+      nodeSelector:
+{{ toYaml .Values.nodeSelector | indent 8 }}        
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 100%
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: homeautomation-adapter-homematic
+spec:
+  selector:
+    app: homeautomation-adapter-homematic
+  ports:
+    - protocol: TCP
+      port: 8080
+      name: http

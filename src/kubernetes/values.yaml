@@ -1,0 +1,30 @@
+---
+
+nodeSelector:
+  kubernetes.io/hostname: f4a.company.com # change to your real domain name for application stack 
+
+hostname: f4ahost.company.com # change to your real host name
+
+# use 'htpasswd {username} {password}'' to create a new basic auth credential
+basicAuth: "f4a:cryptedpassword" # create password with htpasswd
+
+grafana:
+  adminUser: admin
+  adminPassword: YOUhavetoChangeThis
+
+influxdb:
+  adminUser: admin
+  adminPassword: YOUhavetoChangeThis
+  readerUser: f4appsRead
+  readerPassword: YOUhavetoChangeThis
+  writerUser: f4appsWrite
+  writerPassword: YOUhavetoChangeThis
+
+mosquitto:
+  # use mosquitto_passwd to create password crypt
+  # see https://mosquitto.org/man/mosquitto_passwd-1.html
+  #
+  # important: substitude all $ with $$
+  users: |-
+    f4a:$$$$6$$$$ev4tF2TWBVqj9vyT$$$$AcW/Wn0WQVc1TOXzT7aD7n/sTwJk3Ju6XlPg6x/+3WPQvvnWL7cFY5uuRULPiYaVOO3+RHusfPBbyejxdzG11w==
+

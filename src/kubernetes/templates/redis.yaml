@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  labels:
+    app: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+      - name: redis
+        image: library/redis:4-alpine
+        command:
+          - redis-server
+          - --appendonly
+          - 'yes'
+          - --requirepass
+          - test          
+        ports:
+        - containerPort: 6379
+          name: redis
+        volumeMounts:
+          - name: data
+            mountPath: /data
+      volumes:
+        - name: data
+          hostPath:
+            path: /data/{{ .Release.Namespace }}/{{ .Release.Name }}/redis
+            type: DirectoryOrCreate
+      nodeSelector:
+{{ toYaml .Values.nodeSelector | indent 8 }}        
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 100%
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: redis
+spec:
+  selector:
+    app: redis
+  ports:
+    - protocol: TCP
+      port: 6379
+      name: redis

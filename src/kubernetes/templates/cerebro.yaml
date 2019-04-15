@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cerebro
+  labels:
+    app: cerebro
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cerebro
+  template:
+    metadata:
+      labels:
+        app: cerebro
+    spec:
+      containers:
+      - name: cerebro
+        image: lmenezes/cerebro:0.8.1
+        ports:
+        - containerPort: 9000
+          name: http
+      nodeSelector:
+{{ toYaml .Values.nodeSelector | indent 8 }}        
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 100%
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: cerebro
+spec:
+  selector:
+    app: cerebro
+  ports:
+    - protocol: TCP
+      port: 9000
+      name: http
+
+---
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata:
+  name: cerebro
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.frontend.rule.type: PathPrefixStrip
+    ingress.kubernetes.io/auth-type: basic
+    ingress.kubernetes.io/auth-secret: f4a-auth
+spec:
+  rules:
+  - host: cerebro.{{ .Values.hostname }}
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: cerebro
+          servicePort: http

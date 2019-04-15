@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+  labels:
+    app: grafana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      initContainers:
+      - name: chown
+        image: grafana/grafana:5.1.0
+        volumeMounts:
+          - name: data
+            mountPath: /data
+        securityContext:
+          runAsUser: 0
+        command:
+          - chown
+          - "grafana.grafana"
+          - /data
+          - -R
+      containers:
+      - name: grafana
+        image: grafana/grafana:5.1.0
+        env:
+          - name: GF_SECURITY_ADMIN_USER
+            value: {{ .Values.grafana.adminUser }}
+          - name: GF_SECURITY_ADMIN_PASSWORD
+            value:  {{ .Values.grafana.adminPassword }}
+          - name: GF_SERVER_ROOT_URL
+            value: "%(protocol)s://%(domain)s:%(http_port)s/grafana"
+        ports:
+        - containerPort: 3000
+          name: http
+        volumeMounts:
+          - name: data
+            mountPath: /var/lib/grafana
+      volumes:
+        - name: data
+          hostPath:
+            path: /data/{{ .Release.Namespace }}/{{ .Release.Name }}/grafana
+            type: DirectoryOrCreate
+      nodeSelector:
+{{ toYaml .Values.nodeSelector | indent 8 }}        
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 100%
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: grafana
+spec:
+  selector:
+    app: grafana
+  ports:
+    - protocol: TCP
+      port: 3000
+      name: http
+
+---
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata:
+  name: grafana
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.frontend.rule.type: PathPrefixStrip
+spec:
+  rules:
+  - host: {{ .Values.hostname }}
+    http:
+      paths:
+      - path: /grafana
+        backend:
+          serviceName: grafana
+          servicePort: http

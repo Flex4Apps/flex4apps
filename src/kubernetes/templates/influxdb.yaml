@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: influxdb
+  labels:
+    app: influxdb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: influxdb
+  template:
+    metadata:
+      labels:
+        app: influxdb
+    spec:
+      containers:
+      - name: influxdb
+        image: influxdb:1.5.3
+        env:
+          - name: INFLUXDB_ADMIN_USER
+            value: {{ .Values.influxdb.adminUser }}
+          - name: INFLUXDB_ADMIN_PASSWORD
+            value: {{ .Values.influxdb.adminPassword }}
+          - name: INFLUXDB_AUTH_ENABLED
+            value: "true"
+          - name: INFLUXDB_DATA_ENGINE
+            value: "tsm1"
+          - name: INFLUXDB_DATA_MAX_VALUES_PER_TAG
+            value: "0"
+          - name: INFLUXDB_DATA_MAX_SERIES_PER_DATABASE
+            value: "0"
+          - name: INFLUXDB_DB
+            value: "flex4apps"
+          - name: INFLUXDB_HTTP_AUTH_ENABLED
+            value: "true"
+          - name: INFLUXDB_LOG_ENABLED
+            value: "true"
+          - name: INFLUXDB_READ_USER
+            value: {{ .Values.influxdb.readerUser }}
+          - name: INFLUXDB_READ_USER_PASSWORD
+            value: {{ .Values.influxdb.readerPassword }}
+          - name: INFLUXDB_WRITE_USER
+            value: {{ .Values.influxdb.writerUser }}
+          - name: INFLUXDB_WRITE_USER_PASSWORD
+            value: {{ .Values.influxdb.writerPassword }}
+          - name: INIT_USERS
+            value: "true"
+        ports:
+        - containerPort: 8086
+          name: http
+        volumeMounts:
+          - name: data
+            mountPath: /var/lib/influxdb
+      volumes:
+        - name: data
+          hostPath:
+            path: /data/{{ .Release.Namespace }}/{{ .Release.Name }}/influxdb
+            type: DirectoryOrCreate
+      nodeSelector:
+{{ toYaml .Values.nodeSelector | indent 8 }}        
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 100%
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: influxdb
+spec:
+  selector:
+    app: influxdb
+  ports:
+    - protocol: TCP
+      port: 8086
+      name: http

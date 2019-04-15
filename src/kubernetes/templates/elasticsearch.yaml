@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: elasticsearch
+  labels:
+    app: elasticsearch
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: elasticsearch
+  template:
+    metadata:
+      labels:
+        app: elasticsearch
+    spec:
+      initContainers:
+      - name: chown
+        image: busybox
+        volumeMounts:
+          - name: data
+            mountPath: /data
+        command:
+          - chown
+          - "1000.1000"
+          - /data
+          - -R
+      containers:
+      - name: elasticsearch
+        image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.0.0
+        env:
+          - name: bootstrap.memory_lock
+            value: "true"
+          - name: http.host
+            value: "0.0.0.0"
+          - name: transport.host
+            value: "127.0.0.1"
+        ports:
+        - containerPort: 9200
+          name: http
+        volumeMounts:
+          - name: data
+            mountPath: /usr/share/elasticsearch/data
+      volumes:
+        - name: data
+          hostPath:
+            path: /data/{{ .Release.Namespace }}/{{ .Release.Name }}/elasticsearch
+            type: DirectoryOrCreate
+      nodeSelector:
+{{ toYaml .Values.nodeSelector | indent 8 }}        
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 100%
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: elasticsearch
+spec:
+  selector:
+    app: elasticsearch
+  ports:
+    - protocol: TCP
+      port: 9200
+      name: http
+
+---
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata:
+  name: elasticsearch
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.frontend.rule.type: PathPrefixStrip
+    ingress.kubernetes.io/auth-type: basic
+    ingress.kubernetes.io/auth-secret: f4a-auth
+spec:
+  rules:
+  - host: {{ .Values.hostname }}
+    http:
+      paths:
+      - path: /elasticsearch
+        backend:
+          serviceName: elasticsearch
+          servicePort: http

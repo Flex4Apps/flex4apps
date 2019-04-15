@@ -1,0 +1,77 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mosquitto
+  labels:
+    app: mosquitto
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mosquitto
+  template:
+    metadata:
+      labels:
+        app: mosquitto
+    spec:
+      containers:
+      - name: mosquitto
+        image: evermind/f4a-mosquitto:latest
+        env:
+          - name: HICAP_HOST
+            value: logstash
+          - name: HICAP_PORT
+            value: '5555'
+          - name: MOSQUITTO_PORT
+            value: '8883'
+          - name: MOSQUITTO_QUEUE_SIZE
+            value: '1000000'
+          - name: MOSQUITTO_TLS_VERSION
+            value: tlsv1.2
+          - name: MOSQUITTO_USERS
+            value: {{ .Values.mosquitto.users }}        
+          - name: MOSQUITTO_USE_SSL
+            value: 'true'          
+        ports:
+        - containerPort: 8883
+          hostPort: 8883
+          name: mqtt
+        volumeMounts:
+          - name: data
+            mountPath: /mosquitto/data
+          - name: ssl
+            mountPath: /ssl
+            readOnly: true
+      volumes:
+        - name: data
+          hostPath:
+            path: /data/{{ .Release.Namespace }}/{{ .Release.Name }}/mosquitto
+            type: DirectoryOrCreate
+        - name: ssl
+          configMap:
+            name: f4a-ssl
+      imagePullSecrets:
+        - name: docker-evermind-de
+      nodeSelector:
+{{ toYaml .Values.nodeSelector | indent 8 }}        
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 100%
+
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: mosquitto
+spec:
+  selector:
+    app: mosquitto
+  ports:
+    - protocol: TCP
+      port: 8883
+      name: mqtt

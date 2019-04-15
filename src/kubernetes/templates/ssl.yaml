@@ -1,0 +1,28 @@
+---
+
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: f4a-ssl
+data:
+  ca.crt: |
+    # paste your SSL cert into this file like show below. replace the demo values
+    # -----BEGIN CERTIFICATE-----
+    # MIIFFzCCAv+gAwIBAgIBATANBgkqhkiG9w0BAQsFADAUMRIwEAYDVQQDEwlmbGV4
+    # ...
+    # 8FRY58WJdrbK+so=
+    # -----END CERTIFICATE-----
+  server.crt: |
+    # -----BEGIN CERTIFICATE-----
+    # MIIFTzCCAzegAwIBAgIIDHAsei3ufRAwDQYJKoZIhvcNAQELBQAwFDESMBAGA1UE
+    # ....
+    # 8J7W4GRpZQGDaqSX+b1CDTRM7tv8a92SF1I3DGXLiysFgirnodPnW78U1yX5cGFa
+    # 4UwVHVPe+ggwEQyoAz0hF/7LGQ==
+    # -----END CERTIFICATE-----
+  server.key: |
+    # -----BEGIN RSA PRIVATE KEY-----
+    # MIIJKQIBAAKCAgEAmSWPELoTr4LhGngARTQUTpAMOphgr2axjFg6NKp2SaW7dE5B
+    # ...
+    # sEWLznh6zQTabpMc1niAfjnGlZ/kAjSkQx3eDSxnlr69zN1Qe6efU86XOW5t
+    # -----END RSA PRIVATE KEY-----

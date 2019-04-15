@@ -1,0 +1,8 @@
+---
+kind: Secret
+apiVersion: v1
+metadata:
+  name: f4a-auth
+data:
+  auth: {{ .Values.basicAuth | b64enc }}
+type: Opaque

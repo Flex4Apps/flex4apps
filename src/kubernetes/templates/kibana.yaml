@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kibana
+  labels:
+    app: kibana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kibana
+  template:
+    metadata:
+      labels:
+        app: kibana
+    spec:
+      containers:
+      - name: elasticsearch
+        image: docker.elastic.co/kibana/kibana-oss:6.0.0
+        env:
+          - name: ELASTICSEARCH_URL
+            value: http://elasticsearch:9200
+#          - name: SERVER_BASEPATH
+#            value: /kibana
+        ports:
+        - containerPort: 5601
+          name: http
+      nodeSelector:
+{{ toYaml .Values.nodeSelector | indent 8 }}        
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 100%
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: kibana
+spec:
+  selector:
+    app: kibana
+  ports:
+    - protocol: TCP
+      port: 5601
+      name: http
+
+---
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata:
+  name: kibana
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.frontend.rule.type: PathPrefixStrip
+    ingress.kubernetes.io/auth-type: basic
+    ingress.kubernetes.io/auth-secret: f4a-auth
+spec:
+  rules:
+  - host: kibana.{{ .Values.hostname }}
+    http:
+      paths:
+#      - path: /kibana
+      - path: /
+        backend:
+          serviceName: kibana
+          servicePort: http
