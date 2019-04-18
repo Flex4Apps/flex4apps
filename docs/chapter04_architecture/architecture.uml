@@ -1,0 +1,88 @@
+## Flex4Apps infrastructure diagram
+
+@startuml
+
+title Flex4Apps Infrastructure diagram
+
+cloud Internet {
+}
+
+
+node <<F4A docker swarm>> {
+    node runningContainers {
+        component portainer {
+         interface portainer.f4a.me as portainerif
+        }
+        component elasticsearch {
+         interface esc56.f4a.me as esc56if
+        }
+        component kibana {
+            interface kb56.f4a.me as k56bif
+        }
+        component registry {
+            interface registry.f4a.me as registryif
+        }
+        component grafana {
+            interface grafana.f4a.me as grafanaif
+        }
+    }
+
+    node nxp100 <<master>> {
+        component traefik {
+        }
+        note right of traefik
+            *.f4a.me
+        end note
+    }
+
+    node nxp101 <<node>> {
+        component container1 {
+        }
+        note left of container1
+            container1.f4a.me
+        end note
+
+        component containerN {
+        }
+        note left of containerN
+            containerN.f4a.me
+        end note
+    }
+
+    node nxp102 <<node>>{
+        component container2 {
+        }
+
+        component containerM {
+        }
+    }
+
+    node nxp103 <<node>>{
+        component container3 {
+        }
+
+        component containerO {
+        }
+    }
+
+    node nxp10x <<node>>{
+        component container4 {
+        }
+
+        component containerP {
+        }
+    }
+}
+
+Internet <-down->traefik
+traefik <-down-> container1
+traefik <-down-> container2
+traefik <-down-> container3
+traefik <-down-> container4
+
+container1 .. containerN
+container2 .. containerM
+container3 .. containerO
+container4 .. containerP
+
+@enduml
