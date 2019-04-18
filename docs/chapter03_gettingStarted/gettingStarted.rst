@@ -115,7 +115,9 @@ Preparation and adaption to individual enviroment
 ----------------------------------------------------------------
 
 1. identify the host name (value of label kubernetes.io/hostname) of your target host. This value is called hostname later one.
-2. set your DNS to this host an give a domain name, for example f4a.company.com. Keep attention to set also all subdomains to this main domain host. Add the following lines to your domain name server and adapt the IP. Note that there can be a difference between hostname and application domain name. ::
+2. set your DNS to this host an give a domain name, for example f4a.company.com. Keep attention to set also all subdomains to this main domain host. Add the following lines to your domain name server and adapt the IP. Note that there can be a difference between hostname and application domain name.
+
+.. code-block:: txt
 
   ...
   *.f4a                         IN CNAME  f4a
@@ -147,13 +149,10 @@ If everything is checked within config files, helm can be used to rollout the en
 
 After rollout some URLs are available:
 
-<https://kibana.hostname.tld>
-
-<https://cerebro.hostname.tld>
-
-<https://hostname.tld/elasticsearch>
-
-<https://hostname.tld/grafana>
+* https://kibana.hostname.tld
+* https://cerebro.hostname.tld
+* https://hostname.tld/elasticsearch
+* https://hostname.tld/grafana
 
 ElasticSearch
 ----------------------------------------------------------------
