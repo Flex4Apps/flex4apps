@@ -85,12 +85,12 @@ Create file /etc/docker/deamon.json with following content::
 Iptables
 ----------------------------------------------------------------
 
-Firewall rules has to be set manually.::
+Firewall rules has to be set manually. ::
 
   sudo apt-get install iptables-persistent
 
 
-If asked, save the existing rules for IPv4 and IPv6 and rename these files.::
+If asked, save the existing rules for IPv4 and IPv6 and rename these files. ::
 
   mv /etc/iptables/rules.v4 /etc/iptables/rules.v4.orginal
   mv /etc/iptables/rules.v6 /etc/iptables/rules.v6.orginal
@@ -115,7 +115,7 @@ Preparation and adaption to individual enviroment
 ----------------------------------------------------------------
 
 1. identify the host name (value of label kubernetes.io/hostname) of your target host. This value is called hostname later one.
-2. set your DNS to this host an give a domain name, for example f4a.company.com. Keep attention to set also all subdomains to this main domain host. Add the following lines to your domain name server and adapt the IP. Note that there can be a difference between hostname and application domain name.::
+2. set your DNS to this host an give a domain name, for example f4a.company.com. Keep attention to set also all subdomains to this main domain host. Add the following lines to your domain name server and adapt the IP. Note that there can be a difference between hostname and application domain name. ::
 
   ...
   *.f4a                         IN CNAME  f4a
@@ -137,7 +137,7 @@ Rollout
 
 At Cluster all data will stored locally at /data/{namespace}. Namespace will be set at the next steps.
 
-If everything is checked within config files, helm can be used to rollout the entire stack to yout Kuberentes cluster.::
+If everything is checked within config files, helm can be used to rollout the entire stack to yout Kuberentes cluster. ::
 
   cd /src/kuberentes/
   # check for syntax
