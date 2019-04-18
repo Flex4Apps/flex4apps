@@ -89,10 +89,14 @@ Iptables
 
 Firewall rules has to be set manually. ::
 
+.. code-block:: bash
+
   sudo apt-get install iptables-persistent
 
 
 If asked, save the existing rules for IPv4 and IPv6 and rename these files. ::
+
+.. code-block:: bash
 
   mv /etc/iptables/rules.v4 /etc/iptables/rules.v4.orginal
   mv /etc/iptables/rules.v6 /etc/iptables/rules.v6.orginal
@@ -129,6 +133,8 @@ Preparation and adaption to individual enviroment
 
 3. Clone the Flex4Apps repository to local directory with::
 
+.. code-block:: bash
+
    git clone https://github.com/Flex4Apps/flex4apps.git
 
 
@@ -142,6 +148,8 @@ Rollout
 At Cluster all data will stored locally at /data/{namespace}. Namespace will be set at the next steps.
 
 If everything is checked within config files, helm can be used to rollout the entire stack to yout Kuberentes cluster. ::
+
+.. code-block:: bash
 
   cd /src/kuberentes/
   # check for syntax
