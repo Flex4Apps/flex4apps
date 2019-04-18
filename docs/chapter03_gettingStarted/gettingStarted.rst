@@ -71,7 +71,9 @@ Docker
 
 Install docker according to <https://docs.docker.com/install/linux/docker-ce/debian/>
 
-Create file /etc/docker/deamon.json with following content::
+Create file /etc/docker/deamon.json with following content
+
+.. code-block:: json
 
   {
     "storage-driver": "overlay2",
