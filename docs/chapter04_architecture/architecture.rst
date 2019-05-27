@@ -38,7 +38,7 @@ The cloud processing transforms the prepared data into quickly evaluable informa
 
 Cyber-Physical Architektur
 ===================
-.. image:: cloud.png
+.. image:: cps.png
 
 
 Device
@@ -64,14 +64,22 @@ Communication to and from the aggregator runs according to defined security leve
 
 Communicator
 -------------------
-
 The "Communicator" is the interface between the CPS world and the cloud system. The management of several assigned "aggregators" and "devices" takes place at the top level. A standardized interface (here REST) enables the detailed control of the connected system landscape.
 
 **Interfaces**
 Rest, Syslog – Other standards that can be received by Cloud Staging.
 
 **Security**
-Tbd.
+The communicator must be able to act as plug & trust communication bridge between the the CPS side and the cloud side
 
 
 The Flex4Apps architecture allows the use of "custom business logic" to illustrate specific actions that are not solved by the Flex4Apps framework itself.
+
+
+
+Security levels
+===============
+Various security levels should be considered when implementing the Flex4Apps architecture.
+
+
+.. image:: security.png
