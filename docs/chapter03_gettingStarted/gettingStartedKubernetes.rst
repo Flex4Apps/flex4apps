@@ -1,5 +1,5 @@
 ####################################
-Getting started
+Getting started using Kubernetes
 ####################################
 
 Quick start guide based on a Kubernetes setup is show at

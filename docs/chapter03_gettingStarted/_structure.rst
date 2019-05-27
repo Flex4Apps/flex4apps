@@ -1,3 +1,3 @@
 
-.. include:: prepareTheBase.rst
-.. include:: gettingStarted.rst
+.. include:: gettingStartedDocker.rst
+.. include:: gettingStartedKubernetes.rst
