@@ -1,5 +1,5 @@
 ####################################
-architecture
+Architecture
 ####################################
 
 The Flex4Apps framework consists of several components that are described in the following section.  For the sake of clarity, however, it is worth dividing it into two main components:
