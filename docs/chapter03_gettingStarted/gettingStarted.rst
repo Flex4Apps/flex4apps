@@ -15,10 +15,12 @@ Goal
 ================================================================
 * show first setup to get in touch with toolbox
 * use common building blocks as example
+
   * ElasticSearch
   * Kibana
   * Logstah
   * Mosquito
+
 * use Kubernetes / Rancher as base ground
 
 Documentation describe to deployment steps for a first setup. Some components has to be manually connected with each other depending on concrete use case.
