@@ -23,4 +23,4 @@ based on the provisioned swarm, applications like Kibana and Elastic can be acce
 
 .. raw:: html
 
-    <iframe src="https://vimeo.com/manage/338821420" width="640" height="480" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    <iframe src="https://player.vimeo.com/video/338821420" width="640" height="361" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
