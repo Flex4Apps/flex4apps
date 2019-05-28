@@ -2,7 +2,7 @@ What is Docker
 ####################################
 
 Step 1 - setting up the servers
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+===============================
 
 Nowadays the servers are usually preinstalled or an installation process can be kicked off via web interface. For the F4A usecase we chose Ubuntu 16.04 LTS (Long term support).
 
@@ -34,7 +34,8 @@ As docker is still being developed, certain functionality still changes. This tu
 
 
 Step 2 - initiate a swarm
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+===============================
+
 
 Setting up the docker swarm. A swarm is a group of computers::
 
@@ -59,7 +60,8 @@ If you dont remember the token etc - just run::
 
 
 Step 3 - preparing the domain
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+===============================
+
 
 register any domain you like. Just make sure that the domain names are pointing to all the server IPs you have. With that load balancing / failover is possible::
 
