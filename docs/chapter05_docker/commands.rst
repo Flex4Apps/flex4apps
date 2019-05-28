@@ -13,7 +13,9 @@ Advantages of using a docker-compose.yml is that they are usually easy to edit. 
 Examples
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-starting a generic web application with docker run::
+starting a generic web application with docker run
+
+.. code-block:: bash
 
     docker service create \
         --name demo \
@@ -23,7 +25,9 @@ starting a generic web application with docker run::
 
 Thats all - and the service is running.
 
-To create the same via docker-compose.yml::
+To create the same via docker-compose.yml
+
+.. code-block:: yml
 
   version: "3"
 
@@ -40,7 +44,10 @@ To create the same via docker-compose.yml::
     traefik-net:
      external: true
 
-Then you need to issue the following command::
+Then you need to issue the following command
+
+
+.. code-block:: bash
 
   docker stack deploy --compose-file docker-compose.yml demo
 
