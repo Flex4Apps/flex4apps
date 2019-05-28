@@ -3,7 +3,7 @@ Docker commands
 
 
 docker run vs docker compose
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+====================================
 
 
 Advantages of docker run are that the command is easy to issue, just a copy & paste to the servers command line. Downside is, that the commands get quite long and adding line breaks introduces another possible fault. If you want to correct a running service you need to remove it first and then reissue it.
@@ -11,7 +11,7 @@ Advantages of docker run are that the command is easy to issue, just a copy & pa
 Advantages of using a docker-compose.yml is that they are usually easy to edit. Disadvantage is that you have to create them on the server first then issue the command to start them - so one additional step. But the biggest advantage is that they can be re-executed on existing services which will lead to a service update.
 
 Examples
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+====================================
 
 starting a generic web application with docker run
 
@@ -53,6 +53,6 @@ Then you need to issue the following command
 
 
 Conclusion
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+====================================
 
 To quickly test a service - docker run is nice. But to maintain a production environment docker-compose files are strongly recommended.
