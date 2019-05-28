@@ -11,4 +11,4 @@ you can start working with your own Docker Swarm quite quickly. Either execute t
 
 .. code-block:: bash
 
-    wget -O - https://gogs.tillwitt.de/NXP/flex4apps/raw/master/setupBareMetal.sh | bash
+    wget -O - https://github.com/Flex4Apps/flex4apps/blob/master/src/docker/setupBareMetal.sh | bash
