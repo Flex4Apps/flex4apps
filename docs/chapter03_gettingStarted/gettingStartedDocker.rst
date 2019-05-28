@@ -1,4 +1,4 @@
-...using Docker Swarm
+... using Docker Swarm
 ####################################
 
 you can start working with your own Docker Swarm quite quickly. Either execute the line below, or if you are sceptical about what the script does (and you usually should!):

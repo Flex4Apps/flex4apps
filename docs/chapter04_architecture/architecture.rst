@@ -10,7 +10,7 @@ The Flex4Apps framework consists of several components that are described in the
 .. image:: f4a_architecture.png
 
 
-cloud architecture
+Cloud architecture
 ===================
 The Cloud architecture describes the software components of the Flex4Apps framework. The four main components are described below
 
