@@ -54,6 +54,9 @@ glossary
   SSD
     A solid-state drive (SSD) is a solid-state storage device that uses integrated circuit assemblies as memory to store data persistently. It is also sometimes called a solid-state device or a solid-state disk,[1] although SSDs do not have physical disks.
 
+  SSL
+    Transport Layer Security (TLS), and its now-deprecated predecessor, Secure Sockets Layer (SSL),[1] are cryptographic protocols designed to provide communications security over a computer network.
+
   TCP
     The Transmission Control Protocol (TCP) is one of the main protocols of the Internet protocol suite.
 

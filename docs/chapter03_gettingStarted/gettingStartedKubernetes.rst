@@ -139,9 +139,9 @@ Preparation and adaption to individual enviroment
    git clone https://github.com/Flex4Apps/flex4apps.git
 
 
-4. in /src/kuberentes/values.yaml you have to adopt some values to your local environment; change ALL the default passwords and see comments in file
+4. in `/src/kuberentes/values.yaml` you have to adopt some values to your local environment; change ALL the default passwords and see comments in file
 
-5. adapt /src/kuberentes/templates/ssl.yaml and set your ssl certification data
+5. adapt `/src/kuberentes/templates/ssl.yaml` and set your :term:SSL certification data
 
 Rollout
 ----------------------------------------------------------------
