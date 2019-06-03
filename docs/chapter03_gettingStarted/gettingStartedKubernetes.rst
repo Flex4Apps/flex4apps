@@ -88,14 +88,14 @@ Create file /etc/docker/deamon.json with following content
 Iptables
 ----------------------------------------------------------------
 
-Firewall rules has to be set manually. ::
+Firewall rules has to be set manually.
 
 .. code-block:: bash
 
   sudo apt-get install iptables-persistent
 
 
-If asked, save the existing rules for IPv4 and IPv6 and rename these files. ::
+If asked, save the existing rules for IPv4 and IPv6 and rename these files.
 
 .. code-block:: bash
 
@@ -132,7 +132,7 @@ Preparation and adaption to individual enviroment
   ...
 
 
-3. Clone the Flex4Apps repository to local directory with::
+3. Clone the Flex4Apps repository to local directory with
 
 .. code-block:: bash
 
