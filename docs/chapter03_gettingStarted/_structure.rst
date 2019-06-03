@@ -6,4 +6,7 @@ there are multiple ways to get started with Flex4Apps. Below you find some hints
 
 
 .. include:: gettingStartedDocker.rst
+
+.....
+
 .. include:: gettingStartedKubernetes.rst
