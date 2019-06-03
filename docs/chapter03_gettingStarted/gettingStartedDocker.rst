@@ -3,7 +3,7 @@
 
 you can start working with your own Docker Swarm quite quickly. Either execute the line below, or if you are sceptical about what the script does (and you usually should!):
 
-* download the script manually and evaluate it for securiy risks
+* download the script manually and evaluate it for security risks
 * then execute it if you feel comfortable or
 * repeat the steps manually as they are documented in the script.
 
