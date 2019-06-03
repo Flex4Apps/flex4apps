@@ -13,23 +13,23 @@ attach bash to a running container::
   sudo docker exec -i -t containername /bin/bash
 
 
-Remove all containers:
+Remove all containers::
 
   docker rm $(docker ps -a -q)
 
-Remove all images
+Remove all images::
 
   docker rmi $(docker images -q)
 
 
-Whiping out everything
+Whiping out everything::
 
   docker system prune -a
 
 Networking
 -----------
 
-Finding public ip
+Finding public ip::
 
   wget -qO - https://api.ipify.org
 
