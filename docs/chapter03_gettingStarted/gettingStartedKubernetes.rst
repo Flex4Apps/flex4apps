@@ -70,8 +70,7 @@ Given a bare metal physical or virtual server the following steps needed to set 
 Docker
 ----------------------------------------------------------------
 
-Install docker according to `Debian manual
-<hhttps://docs.docker.com/install/linux/docker-ce/debian/>`_
+Install docker according to `Debian manual <https://docs.docker.com/install/linux/docker-ce/debian/>`_
 
 Create file /etc/docker/deamon.json with following content
 
@@ -107,7 +106,7 @@ If asked, save the existing rules for IPv4 and IPv6 and rename these files. ::
 Helm / Tiller
 ----------------------------------------------------------------
 
-running Rancher2 / Kubernetes Setup according to <https://rancher.com/docs/rancher/v2.x/en/quick-start-guide/>
+running Rancher2 / Kubernetes Setup according to `Quick-start-guide <https://rancher.com/docs/rancher/v2.x/en/quick-start-guide/>`_
 
 Deploy core stack
 ================================================================
@@ -149,15 +148,15 @@ Rollout
 
 At Cluster all data will stored locally at /data/{namespace}. Namespace will be set at the next steps.
 
-If everything is checked within config files, helm can be used to rollout the entire stack to yout Kuberentes cluster. ::
+If everything is checked within config files, helm can be used to rollout the entire stack to yout Kuberentes cluster.
 
 .. code-block:: bash
 
-  cd /src/kuberentes/
-  # check for syntax
-  helm upgrade --install --namespace --dry-run f4a  .
-  # do it for real
-  helm upgrade --install --namespace  f4a  .
+   cd /src/kuberentes/
+   # check for syntax
+   helm upgrade --install --namespace --dry-run f4a  .
+   # do it for real
+   helm upgrade --install --namespace  f4a  .
 
 After rollout some URLs are available:
 
@@ -169,7 +168,7 @@ After rollout some URLs are available:
 ElasticSearch
 ----------------------------------------------------------------
 
-ElasticSearch (ES) holds data produced by tracing interface of [Flex4Apps mosquitto broker](<https://github.com/Flex4Apps/mosquitto>).
+ElasticSearch (ES) holds data produced by tracing interface of `Flex4Apps mosquitto broker <https://github.com/Flex4Apps/mosquitto>`_.
 
 ElasticSearch can deployed in more than one node. In this example  only one node is used.
 
