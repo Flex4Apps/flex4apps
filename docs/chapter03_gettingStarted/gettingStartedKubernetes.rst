@@ -139,16 +139,16 @@ Preparation and adaption to individual enviroment
    git clone https://github.com/Flex4Apps/flex4apps.git
 
 
-4. in `/src/kuberentes/values.yaml` you have to adopt some values to your local environment; change ALL the default passwords and see comments in file
+4. in :code:`/src/kuberentes/values.yaml` you have to adopt some values to your local environment; change ALL the default passwords and see comments in file
 
-5. adapt `/src/kuberentes/templates/ssl.yaml` and set your :index:SSL certification data
+5. adapt :code:`/src/kuberentes/templates/ssl.yaml` and set your :index:SSL certification data
 
 Rollout
 ----------------------------------------------------------------
 
 At Cluster all data will stored locally at /data/{namespace}. Namespace will be set at the next steps.
 
-If everything is checked within config files, helm can be used to rollout the entire stack to yout Kuberentes cluster.
+If everything is checked within config files, helm can be used to rollout the entire stack to your kubernetes cluster.
 
 .. code-block:: bash
 
