@@ -4,7 +4,6 @@ cheat sheet
 Clean up of containers
 ----------------------
 
-
 remove all exited containers (should be run on each node)::
 
   docker rm $(docker ps -q -f status=exited)
@@ -13,8 +12,30 @@ attach bash to a running container::
 
   sudo docker exec -i -t containername /bin/bash
 
-Dos and donts
---------------
+
+Remove all containers:
+
+  docker rm $(docker ps -a -q)
+
+Remove all images
+
+  docker rmi $(docker images -q)
+
+
+Whiping out everything
+
+  docker system prune -a
+
+Networking
+-----------
+
+Finding public ip
+
+  wget -qO - https://api.ipify.org
+
+
+Dos and don'ts
+===============
 https://community.spiceworks.com/topic/1832873-a-list-of-don-ts-for-docker-containers
 
 1) Don’t store data in containers
@@ -30,7 +51,7 @@ https://community.spiceworks.com/topic/1832873-a-list-of-don-ts-for-docker-conta
 
 
 Updating this documentation
----------------------------
+===========================
 issue the following command to update this documentation::
 
   docker run --name sphinxneeds --rm \
