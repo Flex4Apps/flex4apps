@@ -70,7 +70,8 @@ Given a bare metal physical or virtual server the following steps needed to set 
 Docker
 ----------------------------------------------------------------
 
-Install docker according to <https://docs.docker.com/install/linux/docker-ce/debian/>
+Install docker according to `Debian manual
+<hhttps://docs.docker.com/install/linux/docker-ce/debian/>`_
 
 Create file /etc/docker/deamon.json with following content
 
