@@ -141,7 +141,7 @@ Preparation and adaption to individual enviroment
 
 4. in `/src/kuberentes/values.yaml` you have to adopt some values to your local environment; change ALL the default passwords and see comments in file
 
-5. adapt `/src/kuberentes/templates/ssl.yaml` and set your :term:`SSL` certification data
+5. adapt `/src/kuberentes/templates/ssl.yaml` and set your :index:`SSL` certification data
 
 Rollout
 ----------------------------------------------------------------
