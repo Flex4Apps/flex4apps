@@ -27,7 +27,7 @@ Docker_ swarm is one solution to achieve this abstraction layer. For this approa
 
 Even though docker runs on many platforms we decided to operate based on an Ubuntu 16.04 LTS. Windows is also possible, but has some drawbacks for the infrastructure we build. Secondly we look at Kubernetes.
 
-Docker only achieves the independence with regards to the stateless execution of services like webservers, mailservers and other services. To provide persistent storage a file server / cluster and a database server is needed, which turns out to be the most difficult challenge. 
+Docker only achieves the independence with regards to the stateless execution of services like webservers, mail servers and other services. To provide persistent storage a file server / cluster and a database server is needed, which turns out to be the most difficult challenge.
 
 .. _Docker: http://www.docker.com
 .. _Flex4apps: https://www.flex4apps-itea3.org
