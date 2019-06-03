@@ -27,6 +27,7 @@ based on the provisioned swarm, applications like Kibana and Elastic can be acce
 
 
 ---
+
 External references
 ====================
 
