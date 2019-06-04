@@ -37,11 +37,13 @@ Gitea is a community managed lightweight code hosting solution written in Go. It
 Docker compose
 -----------
 Below you find the docker-compose for gogs
+
 .. literalinclude:: ../../src/docker/compose/gogs/docker-compose.yml
   :language: yaml
 
 
 Below you find the docker-compose for gitea
+
 .. literalinclude:: ../../src/docker/compose/gitea/docker-compose.yml
   :language: yaml
 
