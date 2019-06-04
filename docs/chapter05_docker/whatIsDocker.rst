@@ -80,4 +80,4 @@ register any domain you like. Just make sure that the domain names are pointing 
   nxp101.f4a.me.    600   IN  A   89.144.27.101
   nxp102.f4a.me.    600   IN  A   89.144.27.102
   nxp103.f4a.me.    600   IN  A   89.144.27.103
-  nxp104.f4a.me.	  600   IN  A   89.144.24.15
+  nxp104.f4a.me.    600   IN  A   89.144.24.15
