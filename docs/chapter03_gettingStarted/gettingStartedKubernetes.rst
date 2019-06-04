@@ -72,7 +72,7 @@ Docker
 
 Install docker according to `Debian manual <https://docs.docker.com/install/linux/docker-ce/debian/>`_
 
-Create file /etc/docker/deamon.json with following content
+Create file :code:`/etc/docker/deamon.json` with following content
 
 .. code-block:: json
 
@@ -146,7 +146,7 @@ Preparation and adaption to individual enviroment
 Rollout
 ----------------------------------------------------------------
 
-At Cluster all data will stored locally at /data/{namespace}. Namespace will be set at the next steps.
+At Cluster all data will stored locally at :code:`/data/{namespace}`. Namespace will be set at the next steps.
 
 If everything is checked within config files, helm can be used to rollout the entire stack to your kubernetes cluster.
 

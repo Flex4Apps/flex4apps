@@ -25,7 +25,7 @@ starting a generic web application with docker run
 
 Thats all - and the service is running.
 
-To create the same via docker-compose.yml
+To create the same via :code:`docker-compose.yml`
 
 .. code-block:: yml
 

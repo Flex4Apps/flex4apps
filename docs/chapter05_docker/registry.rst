@@ -2,7 +2,9 @@
 Docker registry
 ####################################
 
-Running your own registry::
+Running your own registry
+
+.. code-block:: bash
 
   docker service create \
      --name backoffice \
@@ -17,12 +19,17 @@ Running your own registry::
 Pushing to private registry
 ====================================
 
-The local image needs to be taged and then pushed::
+The local image needs to be taged and then pushed
+
+.. code-block:: bash
 
   docker tag phabricator_image registry.f4a.me/phabricator
   docker push registry.f4a.me/phabricator
 
-Run that image::
+Run that image
+
+.. code-block:: bash
+
   docker service create \
     --name demo \
     --label "traefik.port=80" \
@@ -42,7 +49,7 @@ Get all tags of an image::
 
 Private repository viewer
 ====================================
+In the mean time there are good solutions to provide a secure, private and selfhosted docker registry like.
 
-
-Alternatives
-====================================
+* https://goharbor.io/
+* http://port.us.org/
