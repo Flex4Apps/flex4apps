@@ -41,8 +41,11 @@ How to start the demo service::
       kitematic/hello-world-nginx
 
 
-Docker file
------------
+Docker compose
+---------------
 
 .. literalinclude:: ../../src/docker/compose/demo/docker-compose.yml
-   :language: yml
+   :language: yaml
+
+
+.....

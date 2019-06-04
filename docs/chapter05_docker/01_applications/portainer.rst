@@ -22,3 +22,14 @@ To start the container itself::
   --update-delay "5s" --update-parallelism "1" \
   portainer/portainer \
   -H unix:///var/run/docker.sock
+
+
+Docker compose
+---------------
+Below you find the reference code from the repository for portainer.
+
+.. literalinclude:: ../../src/docker/compose/portainer/docker-compose.yml
+   :language: yaml
+
+
+.....

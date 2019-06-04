@@ -53,9 +53,8 @@ The issue the following command to start three instances of elasticsearch::
             exec /docker-entrypoint.sh -Enetwork.bind_host=0.0.0.0 -Enetwork.publish_host=$IP -Ediscovery.zen.minimum_master_nodes=2 -Ediscovery.zen.ping.unicast.hosts=tasks.esc56'
 
 
-Docker file
------------
-
+Docker compose
+---------------
 Below you find the reference code from the repository for the ELK stack version 2.4
 
 .. literalinclude:: ../../src/docker/compose/elk24/docker-compose.yml
@@ -71,3 +70,5 @@ Below you find the reference code from the repository for the ELK stack version 
 
 .. literalinclude:: ../../src/docker/compose/elk62/docker-compose.yml
   :language: yaml
+
+.....

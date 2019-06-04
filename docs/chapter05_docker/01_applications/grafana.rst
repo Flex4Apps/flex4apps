@@ -19,3 +19,15 @@ create the service like this::
     --mount type=bind,src=/swarm/volumes/grafana,dst=/var/lib/grafana \
     -e "GF_SECURITY_ADMIN_PASSWORD=someSecretPassword" \
     grafana/grafana
+
+
+Docker compose
+-----------
+Below you find the docker-compose for grafana
+.. literalinclude:: ../../src/docker/compose/grafana/docker-compose.yml
+  :language: yaml
+
+
+
+
+.....

@@ -17,4 +17,15 @@ The following command will start up PhpMyAdmin::
       -e ALLOW_ARBITRARY=1 \
       nazarpc/phpmyadmin
 
+
+
+Docker compose
+---------------
+Below you find the reference code from the repository for phpmyadmin.
+
+
+.. literalinclude:: ../../src/docker/compose/phpmyadmin/docker-compose.yml
+   :language: yaml
+
+
 .....

@@ -22,3 +22,14 @@ The initiate the docker service::
         --label "traefik.port=3306" \
         -e MYSQL_ROOT_PASSWORD=someSecretPassword \
         mariadb:latest
+
+
+Docker compose
+---------------
+Below you find the reference code from the repository for mariadb
+
+.. literalinclude:: ../../src/docker/compose/mariadb/docker-compose.yml
+   :language: yaml
+
+
+.....

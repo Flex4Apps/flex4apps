@@ -32,6 +32,11 @@ Docker file
 
 
 Docker compose
---------------
+---------------
+Below you find the reference code from the repository for phabricator. This is not completely working at the end of the project
 
-.. literalinclude:: ../../compose/phabricator/docker-compose.yml
+.. literalinclude:: ../../src/docker/compose/phabricator/docker-compose.yml
+   :language: yaml
+
+
+.....
