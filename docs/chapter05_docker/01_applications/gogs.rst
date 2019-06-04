@@ -3,7 +3,7 @@ gogs
 
 What is gogs
 ------------
-:todo:
+`Gogs <https://gogs.io>`_ is a painless self-hosted Git service.
 
 
 How to set it up
@@ -25,3 +25,10 @@ start the service::
       --label "traefik.port=3000" \
       --network traefik-net \
       gogs/gogs
+
+
+Update at project end
+---------------------
+We now would suggest to rather look into `Gitea <gitea.io>`_
+
+Gitea is a community managed lightweight code hosting solution written in Go. It published under the MIT license.

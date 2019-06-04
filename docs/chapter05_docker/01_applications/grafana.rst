@@ -4,6 +4,9 @@ grafana
 What is grafana
 ---------------
 
+`Grafana <https://grafana.com/>`_ is an open source software for time series analytics
+
+
 Setting it up
 -------------
 

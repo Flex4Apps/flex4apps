@@ -4,7 +4,7 @@ Generic demonstrator
 Docker file
 -----------
 
-.. literalinclude:: ../../compose/demo/docker-compose.yml
+.. literalinclude:: /src/docker/compose/demo/docker-compose.yml
 
 Simple demo
 ___________
@@ -34,7 +34,7 @@ The output will be something like::
 Example for traefik label usage below. If single quotes are in the password they would need to be escaped.
 
 To do that close the quoting before it, insert the escaped single quote, and re-open the quoting: ```'first part'\''second part'```
-But I dont even know if md5 password contain single quotes.
+
 
 How to start the demo service::
 

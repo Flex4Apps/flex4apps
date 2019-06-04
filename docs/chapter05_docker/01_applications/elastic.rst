@@ -3,8 +3,7 @@ elasticsearch and kibana
 
 What is  elasticsearch and kibana
 ------------------------------------
-:todo:
-
+`elasticsearch <https://www.elastic.co>`_ is a search engine based on the Lucene library. It provides a distributed, multitenant-capable full-text search engine with an HTTP web interface and schema-free JSON documents. Elasticsearch is developed in Java.
 
 How to set it up - release 2.4
 ----------------------------------
