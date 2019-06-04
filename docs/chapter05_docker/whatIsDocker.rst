@@ -65,7 +65,7 @@ Step 3 - preparing the domain
 
 register any domain you like. Just make sure that the domain names are pointing to all the server IPs you have. With that load balancing / failover is possible::
 
-  f4a.me.           86400 IN  SOA  nsa3.schlundtech.de. mail.tillwitt.de. 2017112808 43200 7200 1209600 86400
+  f4a.me.           86400 IN  SOA nsa3.schlundtech.de. mail.tillwitt.de. 2017112808 43200 7200 1209600 86400
   f4a.me.           86400 IN  NS  nsa3.schlundtech.de.
   f4a.me.           86400 IN  NS  nsb3.schlundtech.de.
   f4a.me.           86400 IN  NS  nsc3.schlundtech.de.
