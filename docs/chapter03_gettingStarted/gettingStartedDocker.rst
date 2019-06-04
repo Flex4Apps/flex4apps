@@ -7,6 +7,8 @@ you can start working with your own Docker Swarm quite quickly. Either execute t
 * then execute it if you feel comfortable or
 * repeat the steps manually as they are documented in the script.
 
+If the execution of the script fails - you might either have to specify your network interface or provide the public IP manually.
+
 
 
 .. code-block:: bash
