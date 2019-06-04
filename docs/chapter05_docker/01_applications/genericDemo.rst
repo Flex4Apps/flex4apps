@@ -4,15 +4,19 @@ Generic demonstrator
 Docker file
 -----------
 1
+
 .. literalinclude:: ../src/docker/compose/demo/docker-compose.yml
 
 2
+
 .. literalinclude:: ../../src/docker/compose/demo/docker-compose.yml
 
 3
+
 .. literalinclude:: ../../../src/docker/compose/demo/docker-compose.yml
 
 4
+
 .. literalinclude:: ../../../../src/docker/compose/demo/docker-compose.yml
 
 
