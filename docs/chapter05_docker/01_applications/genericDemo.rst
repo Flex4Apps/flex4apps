@@ -4,7 +4,7 @@ Generic demonstrator
 Docker file
 -----------
 
-.. literalinclude:: /src/docker/compose/demo/docker-compose.yml
+.. literalinclude:: ../../../src/docker/compose/demo/docker-compose.yml
 
 Simple demo
 ___________
