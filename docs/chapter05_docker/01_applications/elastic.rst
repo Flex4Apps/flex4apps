@@ -59,15 +59,15 @@ Docker file
 Below you find the reference code from the repository for the ELK stack version 2.4
 
 .. literalinclude:: ../../src/docker/compose/elk24/docker-compose.yml
-   :language: yml
+   :language: yaml
 
 Below you find the reference code from the repository for the ELK stack version 5.6
 
 .. literalinclude:: ../../src/docker/compose/elk56/docker-compose.yml
-  :language: yml
+  :language: yaml
 
 
 Below you find the reference code from the repository for the ELK stack version 6.2
 
 .. literalinclude:: ../../src/docker/compose/elk62/docker-compose.yml
-  :language: yml
+  :language: yaml
