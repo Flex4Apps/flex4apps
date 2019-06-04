@@ -10,7 +10,7 @@ echo "                                                                          
 
 
 # on which interface is the public ip - usually eth0 or en0
-pubNetInterface=ens4
+pubNetInterface=eth0
 
 
 ##### nothing to do below here
@@ -18,7 +18,7 @@ pubip=`ifconfig $pubNetInterface | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' |
 echo public ip = $pubip
 
 # which other IPs are part of the swarm (dont change the first entry)
-swarmips=("$pubip" "10.156.0.3" "10.156.0.3")
+swarmips=("$pubip")
 
 
 # setting up /etc/host to reflect all gluster clients
