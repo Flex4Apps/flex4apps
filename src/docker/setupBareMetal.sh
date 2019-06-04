@@ -73,7 +73,7 @@ echo "   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═════�
 echo "                                                    ";
 mkdir -p /data/local/traefik/logs
 mkdir -p /data/local/traefik/acme
-docker stack deploy --compose-file /root/flex4apps/compose/traefik/docker-compose.yml traefik
+docker stack deploy --compose-file /root/flex4apps/src/docker/compose/traefik/docker-compose.yml traefik
 docker service inspect traefik_traefik --pretty
 docker stack services traefik
 
@@ -87,7 +87,7 @@ echo "                                                    ";
 
 
 #depoy the basic services
-docker stack deploy --compose-file /root/flex4apps/compose/elk62/docker-compose.yml elk
+docker stack deploy --compose-file /root/flex4apps/src/docker/compose/elk62/docker-compose.yml elk
 docker service inspect elk_elasticsearch --pretty
 docker service inspect elk_kibana --pretty
 docker stack services elk
