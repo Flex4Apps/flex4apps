@@ -24,6 +24,7 @@ create the service like this::
 Docker compose
 -----------
 Below you find the docker-compose for grafana
+
 .. literalinclude:: ../../src/docker/compose/grafana/docker-compose.yml
   :language: yaml
 

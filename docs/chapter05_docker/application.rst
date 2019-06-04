@@ -8,6 +8,7 @@ On the created system applications can be launched. Templates for applications a
 
 .. include:: 01_applications/genericDemo.rst
 .. include:: 01_applications/grafana.rst
+.. include:: 01_applications/prometheus.rst
 .. include:: 01_applications/portainer.rst
 .. include:: 01_applications/phabricator.rst
 .. include:: 01_applications/mariadb.rst
@@ -16,3 +17,5 @@ On the created system applications can be launched. Templates for applications a
 .. include:: 01_applications/drone.rst
 .. include:: 01_applications/elastic.rst
 .. include:: 01_applications/kibana.rst
+.. include:: 01_applications/registry.rst
+.. include:: 01_applications/sheperd.rst
