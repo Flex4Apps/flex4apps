@@ -37,7 +37,7 @@ apt-get update & apt-get -y upgrade && apt autoclean -y && apt autoremove -y
 apt-get -y install git nano
 
 #cloning flex4apps
-git clone https://gogs.tillwitt.de/NXP/flex4apps
+git clone https://github.com/Flex4Apps/flex4apps.git
 
 # installing cron to keep system up2date including reboot
 echo "0 3 * * * (apt-get update & apt-get -y upgrade && apt autoclean -y && apt autoremove -y)" >> mycron && \
@@ -56,6 +56,7 @@ echo "                                                 ";
 
 #installing docker software
 apt-get -y install git docker docker-compose nano
+apt install -y docker.io
 
 #create the swarm
 docker swarm init --advertise-addr $pubip
