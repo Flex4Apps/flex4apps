@@ -1,25 +1,6 @@
 Generic demonstrator
 ====================
 
-Docker file
------------
-1
-
-.. literalinclude:: ../src/docker/compose/demo/docker-compose.yml
-
-2
-
-.. literalinclude:: ../../src/docker/compose/demo/docker-compose.yml
-
-3
-
-.. literalinclude:: ../../../src/docker/compose/demo/docker-compose.yml
-
-4
-
-.. literalinclude:: ../../../../src/docker/compose/demo/docker-compose.yml
-
-
 Simple demo
 ___________
 
@@ -58,3 +39,10 @@ How to start the demo service::
       --label 'traefik.frontend.auth.basic=myName:$apr1$a7R637Ua$TvXp8/lgky5MDLGLacI1e1' \
       --network traefik-net \
       kitematic/hello-world-nginx
+
+
+Docker file
+-----------
+
+.. literalinclude:: ../../src/docker/compose/demo/docker-compose.yml
+   :language: yml

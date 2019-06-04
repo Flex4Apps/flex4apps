@@ -51,3 +51,23 @@ The issue the following command to start three instances of elasticsearch::
         elasticsearch:5.6.4 bash -c 'ip addr && IP=$(ip addr | awk -F"[ /]*" "/inet .*\/24/{print \$3}") && \
             echo publish_host=$IP && \
             exec /docker-entrypoint.sh -Enetwork.bind_host=0.0.0.0 -Enetwork.publish_host=$IP -Ediscovery.zen.minimum_master_nodes=2 -Ediscovery.zen.ping.unicast.hosts=tasks.esc56'
+
+
+Docker file
+-----------
+
+Below you find the reference code from the repository for the ELK stack version 2.4
+
+.. literalinclude:: ../../src/docker/compose/elk24/docker-compose.yml
+   :language: yml
+
+Below you find the reference code from the repository for the ELK stack version 5.6
+
+.. literalinclude:: ../../src/docker/compose/elk56/docker-compose.yml
+  :language: yml
+
+
+Below you find the reference code from the repository for the ELK stack version 6.2
+
+.. literalinclude:: ../../src/docker/compose/elk62/docker-compose.yml
+  :language: yml
