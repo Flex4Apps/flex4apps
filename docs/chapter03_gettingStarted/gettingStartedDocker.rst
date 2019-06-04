@@ -13,4 +13,4 @@ If the execution of the script fails - you might either have to specify your net
 
 .. code-block:: bash
 
-    wget -O - https://github.com/Flex4Apps/flex4apps/blob/master/src/docker/setupBareMetal.sh | bash
+    wget -O - https://raw.githubusercontent.com/Flex4Apps/flex4apps/master/src/docker/setupBareMetal.sh | bash
