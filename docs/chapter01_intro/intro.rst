@@ -7,9 +7,9 @@ Management summary
 
 Goal of this page is to provide a manual and scripts to
 
-* get an reliable open source infrastructure for your business / environment
-* reproducibly running in less than 1 hour
-* at a cost of less 20 € month (lets see how this changes)
+* Get an reliable open source infrastructure for your business / environment
+* Reproducibly running in less than 1 hour
+* At a operating cost of less than 20 € month
 
 About the Flex4Apps
 ===================
@@ -29,5 +29,9 @@ Even though docker runs on many platforms we decided to operate based on an Ubun
 
 Docker only achieves the independence with regards to the stateless execution of services like webservers, mail servers and other services. To provide persistent storage a file server / cluster and a database server is needed, which turns out to be the most difficult challenge.
 
+Alternatively a similar Flex4Apps based system can be deployed using serverless technologies such as AWS Lambda_ or Azure Cloud Functions. Such a deployment is to be considered if the cost of renting servers is too high or elasticity needs demand a different approach. While it does depend on the use case, please note that the resulting system will be a little less portable than the Docker architectures.. 
+
 .. _Docker: http://www.docker.com
+.. _Lambda: https://aws.amazon.com/lambda/
 .. _Flex4apps: https://www.flex4apps-itea3.org
+
