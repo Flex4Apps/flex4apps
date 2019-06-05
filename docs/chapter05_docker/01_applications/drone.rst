@@ -55,7 +55,7 @@ How to:
 -------
 Once setup, with in this case gogs, you can log into the web interface. After a short sync all repositories should be visible. Activate drone.io for the corresponding repository.
 
-To tell drone.io what to execute you need to add a ``.drone.yml`` to your repository. Examples are below.
+To tell drone.io what to execute you need to add a :code:`.drone.yml` to your repository. Examples are below.
 
 
 Examples and configuration

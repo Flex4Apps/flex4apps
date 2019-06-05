@@ -4,9 +4,9 @@ What is Docker
 Step 1 - setting up the servers
 ===============================
 
-Nowadays the servers are usually preinstalled or an installation process can be kicked off via web interface. For the F4A usecase we chose Ubuntu 16.04 LTS (Long term support).
+Nowadays the servers are usually preinstalled or an installation process can be kicked off via web interface. For the F4A use case we chose Ubuntu 16.04 LTS (Long term support).
 
-First we should ensure that the system is up-to-date and secure. This is done by kicking off the advanced packaging tool (apt). Within this process we can directly install the docker server component. All steps are done by issueing the following command::
+First we should ensure that the system is up-to-date and secure. This is done by kicking off the advanced packaging tool (apt). Within this process we can directly install the docker server component. All steps are done by issuing the following command::
 
      apt-get update && apt-get upgrade -y && apt install -y docker.io
 
@@ -54,7 +54,7 @@ getting the feedback::
   To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
 
 
-If you dont remember the token etc - just run::
+If you don't remember the token etc. - just run::
 
   docker swarm join-token worker
 

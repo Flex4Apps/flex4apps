@@ -19,7 +19,7 @@ Running your own registry
 Pushing to private registry
 ====================================
 
-The local image needs to be taged and then pushed
+The local image needs to be tagged and then pushed
 
 .. code-block:: bash
 
