@@ -2,5 +2,5 @@
 Best practices and state of the art
 ###################################
 
-.. include:: bestPracices.rst
+.. include:: bestPractices.rst
 .. include:: stateOfTheArt.rst
