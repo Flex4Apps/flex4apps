@@ -36,8 +36,8 @@ Cloud processing
 -------------------
 The cloud processing transforms the prepared data into quickly evaluable information. Based on a supplementary rule set, data are transformed, calculated, adjusted and processed.
 
-Cyber-Physical Architektur
-===================
+Cyber-Physical Architecture
+=============================
 .. image:: cps.png
 
 

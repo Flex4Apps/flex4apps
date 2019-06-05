@@ -8,7 +8,7 @@ Quick start guide based on a Kubernetes setup is show at
 Getting started with Kubernetes and Flex4Apps
 ****************************************************************
 
-This repository hosts example configuraton files for the Getting started guide.
+This repository hosts example configuration files for the Getting started guide.
 
 Goal
 ================================================================
@@ -48,7 +48,7 @@ Flex4Apps stack is divided in
 * physical parts
 * cloud part
 
-The stack itselfs mainly covers the cloud part. From the pysical side it receives data via API. In this example a MQTT message broker is used for connections from outside.
+The stack itself mainly covers the cloud part. From the physical side it receives data via API. In this example a MQTT message broker is used for connections from outside.
 
 Inside the cloud part of the stack data distinguish in
 
@@ -118,7 +118,7 @@ Required:
 
 For this example it is assumed that context for the cluster is named 'f4a' on the local machine. Furthermore installation is demonstrated on a single node within a cluster. Different deployments styles need modifications at target hosts and some labels.
 
-Preparation and adaption to individual enviroment
+Preparation and adaption to individual environment
 ----------------------------------------------------------------
 
 1. identify the host name (value of label kubernetes.io/hostname) of your target host. This value is called hostname later one.

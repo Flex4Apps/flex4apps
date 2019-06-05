@@ -1,7 +1,7 @@
 ... using Docker Swarm
 ####################################
 
-you can start working with your own Docker Swarm quite quickly. Either execute the line below, or if you are sceptical about what the script does (and you usually should!):
+you can start working with your own Docker Swarm quite quickly. Either execute the line below, or if you are skeptical about what the script does (and you usually should!):
 
 * download the script manually and evaluate it for security risks
 * then execute it if you feel comfortable or
