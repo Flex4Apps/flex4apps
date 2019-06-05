@@ -80,7 +80,7 @@ The aim of the following guidelines on how to log is to facilitate analysis of t
 
   An additional advantage of structured logs is that adding information to existing log statements in the source code will not break existing analysis scripts, since these scripts will rely on key-value pairs and not on the exact order of words in the message.
 
-  A central component developed within the log analysis part of Flex4Apps is a log converter which is able to identify parameters in unstructured log messages and subsequently convert these messages to structured messages. Today, this feature is essential to perform analyses on a large variety of logs, since currently, unstructured log messages are still the norm.
+  A central component developed within the log analysis part of Flex4Apps is a log converter which is able to identify parameters in unstructured log messages and subsequently convert these messages to structured messages. Today, this feature is essential to perform analyses on a large variety of logs, since currently, unstructured log messages are still the norm. Documentation for this converter is available `here <LogAno_manual.pdf>`_.
   
 **Use a single structured format throughout all parts of the application.**
   Otherwise, parsing logs from your application will only get more complicated.
