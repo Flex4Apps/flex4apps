@@ -1,49 +1,6 @@
 Best practices
 ##############
 
-Cloud solutions and software as a service
-=========================================
-
-Business best practices
------------------------
-
--	Discuss and identify a feedback loop. Product managers and stakeholders can use the data to focus on important topics but will have to consciously look at the data and interpret it to form good decisions.
-
--	Make sure to invest time in generating reports, spreadsheets or other forms of data that is usable by business users who actually want the data. If the form is not accessible enough it will not be used.
-
--	Design for flexibility. As soon as data is available, new questions will arise which potentially need extra data to be gathered.
--	Think about security and Data Protection. GDPR can have a significant impact if you collect data that might be identifiable.
-
--	Think about the lifetime of the analytics. Storing everything forever might be a good idea but more often than not the value decreases rapidly. Make sure to pass this to the technical process.
-
-Technical best practices
-------------------------
-
-- **In cloud solutions, stateful deployments need the most attention.**
-  
-  Before starting Flex4Apps, project partners believed that managing fail-over scenarios for high-availability installations is the part which is most difficult to handle.
-
-  During learning about cluster deployment, we realized various solutions exist for stateless services. Tasks become complicated if services need persistence (so-called stateful services).
-
-  Storage has to be provided as an extra high-availability service, which makes it cost intensive. An alternative approach is to look for storage software which inherits support for multi-node cluster deployment. This can mean that a vendor lock-in can't be avoided. 
-
-- **S3 can be a good light cloud storage.**
-
-  There is no vendor lock-in, because various implementations at commercial clouds exist next to various open source implementations. S3 can be deployed on small single nodes or on clusters with redundancy for high availability. However, S3 is only suited for pure storage, not for complex querying.
-
-  If S3 is not good enough, there is no one-size-fits-all solution out there right now. Most secure and usable solutions are bound to a cloud provider. Check costs and functions of storage and for other needed functions of the cloud provider.
--	Be aware of the cost factors of the chosen solution and see where the dominant factors lie as volumes increase.
-
--	Compress close at the source (and try and match optimal parameters) because transmission costs can otherwise be very high.
-
--	Filter data (preferably dynamically) at the source to keep storage and analytics persistency costs down.
-
--	Unpredictable traffic surges might overwhelm your end-points. Also make sure to keep in mind where your clients are sending the data. Don't reinvent the wheel. Sending directly to AWS Kinesis Firehose will handle any load but requires AWS credentials.
-
--	Define if and what *real-time* means for your use case. If the real time can work asynchronously and tolerate delays you can design the system to be very cost efficient.
-
--	Don't try and find the ideal storage solution as there is none that is fully cross platform and portable across all cloud vendors unless you sacrifice features (dropping down to standard SQL instead of NoSQL, Big Data or analytic systems). Mix and match storage solutions as you see fit.
-
 Log file analysis
 =================
 
@@ -105,11 +62,101 @@ The aim of the following guidelines on how to log is to facilitate analysis of t
 **Use fine-grained timestamps with time zones.**
   A granularity of at least milliseconds ensures the correct order of events happening in fast succession can be reconstructed. Time zone information is essential in distributed systems where individual components may be located on different continents.
 
+Analytics in cloud solutions and software as a service (SaaS)
+=============================================================
+
+Since the SaaS and Cloud paradigms leverage the Internet as a distribution channel, SaaS offers software builders the possibility to offer their products and service on a global scale. Most SaaS business models are based on a “pay-as-you-go” principle, whereby customers pay a monthly fee based upon their usage of the product (i.e. number of users, storage, ...). It is fairly well understood which high level KPIs matter most for SaaS businesses; most notably acquisition cost (the cost to attract a new customers), lifetime value (the total revenue generated per customer over the life span of the relationship with the customer) and month over month growth. It is considered a best practice to deploy dashboards to monitor these high level KPIs. A growing number of SaaS products become available offering such dashboards as a service. 
+
+The role of product management in a SaaS business is to design “a system” by combining technologies into a total UX so that business goals are achieved. In this context, UX involves all touch points between company and customers (i.e. marketing material, product itself, pricing and price plans, support,) and includes both product design and interaction design. 
+
+Designing a successful user experience for any product is a wicked problem. I.e. there are only better and worse solutions, and only by experimentation, iteration, monitoring and validation one can determine if one is moving towards a better solution or away from it. This in itself is nothing new: in the software world, agile software development popularized the idea of incremental iterations and timely feedback. The Lean Startup movement applied a similar reasoning to not just product development, but to the entire process of business development and go-to-market, while more recently the growth hacking community applies a similar reasoning to marketing. 
+
+While the statement designing a successful user experience is wicked problem is true for most products (hardware or software, B2C or B2B), online businesses, and thus Cloud/SaaS businesses have a clear advantage: they can iterate and experiment very fast: indeed, deploying a new version of the product is often just a matter of minutes, thanks to advances in DevOps. SaaS providers have the possibility to monitor and measure the impact of a change instantly, via monitoring and analytics, and treat their entire operations (i.e. product, service, user base, etc.) as “a living lab“. Some well-known examples of companies doing this are Netflix.com, Google.com, or the Huffington Post with their A/B testing of headlines. 
+
+In a SaaS context, and in general, for companies that want to use the “too cheap to meter” strategy to deal with the software paradox, the discipline of Product Management is dramatically changing and broadening. A SaaS product manager is not only responsible for defining the product’s features and how to support these, she has to incorporate valorization and growth strategies as well. She will leverage the possibilities of instant change (DevOps) and instant feedback (metrics and analytics) and install a living lab throughout the entire SaaS operation. 
+
+In order to be successful at installing this living lab, software product managers for SaaS products will want to use analytics and usage data to make informed product management decisions, as well as install feedback loops that potentially expand to all stakeholders so that the information collected via the analytics can be leveraged throughout the entire SaaS organization.  
+
+Analytics best practices
+------------------------
+
+When talking about data-driven product and growth management (often in an online SaaS content), it is more common to talk about analytics than to talk about logging, although conceptually, these are similar, in the sense that instead of logging information about how the system is behaving, one logs information on how the user is behaving on the system. So many of the best practices described above, apply for this use case as well. Specifically naming conventions: the naming of the events is important, once a specific user event (e.g. user presses the submit button of the “create project” form) is given a name, one shouldn’t go lightly on changing the name of this event, since that might skew reporting later on.  
+
+**Use structured formats (e.g. JSON, protobuffers).**
+  For analytics event reporting, JSON is the most widely used format to serialize and transport the data. JSON is easy to read and write from within JavaScript, the most used front end language for digital services. Virtually every programming language has extensive support to parse and generate JSON documents. Moreover, many database systems (both SQL and NoSQL based) support JSON as a data type and allow querying within JSON data structures. 
+
+**Consider front end and back end analytics.**
+  Many analytics are gathered on the client side, and then sent back to the analytics back end This is logical and easiest, since it is with the client side (web app, mobile, …) that the user interacts. The downside of this approach is that, depending on what analytics technology is used, the user might block communication between client and analytics back end (e.g. though the use of ad blockers, ad blocking proxies, etc…). When you want to be absolutely certain to track certain events within your analytics system, consider logging these events from the server side (a user has no control over what happens on the server side). 
+
+**Minimal structure of an analytics log message**
+  At a minimum, each analytics event message should have:
+  
+  - A user ID: this is a unique identifier for the given user. This can be the same ID as the user is known in the actual system, like a guid or an email address.
+  - A time stamp when the event happened, preferable in UTC.  
+  - The name of the event.  
+  - Optionally, one can provide additional meta data that might be relevant for the given event. Meta data could be details on the users client (browser, OS, …), metrics (e.g. for an event “watch_movie”, the meta data could contain which move and the percentage of the video the user watched) or any other info that seems relevant. 
+
+**Consider sending event data in batches.**
+  Depending on how much analytics you gather (e.g. you only record major events in the app vs. you record every single click a user does), one might consider batching the event data and send over multiple events at once, every x seconds, instead of sending the events over as soon as they happen. Especially for mobile apps, consider the offline case, whereby analytics are batched and cached when the client is used offline. 
+
+**Use analytics to build user profiles.**
+  A user profile for this case indicates, for every single user, the activity that user expressed with the application. Based upon that data, one can derive the type of user (e.g. a project manager vs a project contributor, …) , how engaged he/she is with the service (power user vs. novice trial user), latest activity, etc. In it’s simplest form, this user profile is a timeline of all the events the user did on the system. 
+
+**Build dashboards/queries to follow up on major KPIs.**
+  Gathering the analytics data is one thing, putting them to good use is another one. At the very least, build some dashboards that illustrate the major KPIs for the SaaS business. At least have a dashboard that illustrates the evolution of new accounts/unit of time, churn rates over time, breakdown of feature usage, funnel metrics and engagement metrics. 
+
+**Feed back analytics data to all stakeholders.**
+  Dashboards are one way of feeding back the data and information to stakeholders, but there are other possibilities as well: 
+
+  - Connect the user profiles with support systems, so that, whenever support questions come in, the support agent has the context of the given user (e.g. engagement level, the plan the user is one, …) at her fingertips and thus can give tailored support (microcare) 
+
+  - Feed back the analytics (or parts thereof) to the end users: e.g. as reporting on how all users within an organization are using the SAAS. These can be in the form of reports, dashboards … 
+
+  - Sales and account management: having a clear insight on the usage patterns of a given customer/account, the sales or account management organization can discuss potential opportunities to up sell/cross sell. 
+
+Business best practices
+-----------------------
+
+-	Discuss and identify a feedback loop. Product managers and stakeholders can use the data to focus on important topics but will have to consciously look at the data and interpret it to form good decisions.
+
+-	Make sure to invest time in generating reports, spreadsheets or other forms of data that is usable by business users who actually want the data. If the form is not accessible enough it will not be used.
+
+-	Design for flexibility. As soon as data is available, new questions will arise which potentially need extra data to be gathered.
+
+-	Think about security and Data Protection. GDPR can have a significant impact if you collect data that might be identifiable.
+
+-	Think about the lifetime of the analytics. Storing everything forever might be a good idea but more often than not the value decreases rapidly. Make sure to pass this to the technical process.
+
+Technical best practices
+------------------------
+
+- **In cloud solutions, stateful deployments need the most attention.**
+  
+  Before starting Flex4Apps, project partners believed that managing fail-over scenarios for high-availability installations is the part which is most difficult to handle.
+
+  During learning about cluster deployment, we realized various solutions exist for stateless services. Tasks become complicated if services need persistence (so-called stateful services).
+
+  Storage has to be provided as an extra high-availability service, which makes it cost intensive. An alternative approach is to look for storage software which inherits support for multi-node cluster deployment. This can mean that a vendor lock-in can't be avoided. 
+
+- **S3 can be a good light cloud storage.**
+
+  There is no vendor lock-in, because various implementations at commercial clouds exist next to various open source implementations. S3 can be deployed on small single nodes or on clusters with redundancy for high availability. However, S3 is only suited for pure storage, not for complex querying.
+
+  If S3 is not good enough, there is no one-size-fits-all solution out there right now. Most secure and usable solutions are bound to a cloud provider. Check costs and functions of storage and for other needed functions of the cloud provider.
+-	Be aware of the cost factors of the chosen solution and see where the dominant factors lie as volumes increase.
+
+-	Compress close at the source (and try and match optimal parameters) because transmission costs can otherwise be very high.
+
+-	Filter data (preferably dynamically) at the source to keep storage and analytics persistency costs down.
+
+-	Unpredictable traffic surges might overwhelm your end-points. Also make sure to keep in mind where your clients are sending the data. Don't reinvent the wheel. Sending directly to AWS Kinesis Firehose will handle any load but requires AWS credentials.
+
+-	Define if and what *real-time* means for your use case. If the real time can work asynchronously and tolerate delays you can design the system to be very cost efficient.
+
+-	Don't try and find the ideal storage solution as there is none that is fully cross platform and portable across all cloud vendors unless you sacrifice features (dropping down to standard SQL instead of NoSQL, Big Data or analytic systems). Mix and match storage solutions as you see fit.
+
 Home automation
 ===============
-
-Use case description
---------------------
 
 Measured values from the residential area of tenants or house owners are to be automatically made available in third-party software. This increases the comfort of use. The user receives more information as a basis for decision-making on his supply contracts and consumption behaviour.
  
