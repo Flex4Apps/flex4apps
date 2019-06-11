@@ -69,6 +69,7 @@ This folder contains the setup of the entire analytics backend. This
 To deploy this backend, one needs to first install the serverless toolkit (https://serverless.com/). This framework is an easy tool that automates packaging and deploying lambda functions really easy. This toolkit is written in nodejs and requires a nodejs runtime to be installed. Note that the serverless toolkit does not require the lambda functions themselves to be written in nodejs.
 
 Once nodejs is installed, install the serverless toolkit.
+
 .. code-block:: bash
 
   npm install -g serverless
@@ -76,6 +77,7 @@ Once nodejs is installed, install the serverless toolkit.
 Next, setup a AIM user on AWS that has enough rights to create and update the resources needed. Detailed documentation can be found at https://serverless.com/framework/docs/providers/aws/guide/credentials/.
 
 Than, in the analytics-services folder, run
+
 .. code-block:: bash
 
   yarn install
@@ -83,6 +85,7 @@ Than, in the analytics-services folder, run
 to install project dependancies. Note that for the analytics services, this npm install will install both the dependancies required for the services itself, as well as some dependancies that are introduced in the serverless.yml project description file.
 
 Next you can deploy the project using
+
 .. code-block:: bash
 
   yarn deploy
