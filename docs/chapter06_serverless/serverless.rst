@@ -112,7 +112,7 @@ Setup your custom domain in AWS Certificate Manager, be sure to do that in the U
 
 .. code-block:: bash
 
-yarn sls create_domain --stage mystage
+   yarn sls create_domain --stage mystage
 
 This can take up to 40 minutes.
 If you use AWS Route 53 for your DNS, :code:`sls create_domain` can update your DNS for you, you will need to edit the serverless.yml file for this. (For my demo, I'm not using Route 53)
@@ -124,11 +124,11 @@ Deploy commands
 
 .. code-block:: bash
 
- cd analytics-services
- yarn install
- yarn sls deploy -v --stage mystage
+   cd analytics-services
+   yarn install
+   yarn sls deploy -v --stage mystage
 
-To remove the stack: .. code-block:: bash `yarn sls remove -v --stage mystage`
+To remove the stack: :code:`yarn sls remove -v --stage mystage`
 
 demo-app
 ========================================================================
