@@ -139,7 +139,7 @@ This folder contains a small web application that can be used to send test event
 Installation
 ========================================================================
 
-* `Serverless <https://serverless.com/>'_
+* `Serverless <https://serverless.com/>`_
 	* :code:`npm install -g serverless`
 * Add credentials to the :code:`.aws/credentials` file
 * Do a :code:`npm install` in the :code:`analytics-services` folder
