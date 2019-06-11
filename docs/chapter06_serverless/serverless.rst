@@ -117,8 +117,7 @@ Setup your custom domain in AWS Certificate Manager, be sure to do that in the U
 This can take up to 40 minutes.
 If you use AWS Route 53 for your DNS, :code:`sls create_domain` can update your DNS for you, you will need to edit the serverless.yml file for this. (For my demo, I'm not using Route 53)
 
-Once your domain is up and running, simply redeploy using :code:
-`sls deploy --stage mystage`
+Once your domain is up and running, simply redeploy using :code:`sls deploy --stage mystage`
 
 Deploy commands
 
@@ -140,7 +139,7 @@ This folder contains a small web application that can be used to send test event
 Installation
 ========================================================================
 
-* [Serverless](https://serverless.com/):
+* `Serverless <https://serverless.com/>'_
 	* :code:`npm install -g serverless`
 * Add credentials to the :code:`.aws/credentials` file
 * Do a :code:`npm install` in the :code:`analytics-services` folder
@@ -154,6 +153,7 @@ When the analytics service is deployed, a IAM user is created with as only privi
 In order to access kibana, the easiest solution is to run a local proxy server. Check https://github.com/abutaha/aws-es-proxy for details.
 
 What I did:
+
 .. code-block:: bash
 
   wget https://github.com/abutaha/aws-es-proxy/releases/download/v0.4/aws-es-proxy-0.4-mac-amd64 -O aws-es-proxy
