@@ -116,9 +116,9 @@ Without special precaution, the API gateway end points that AWS Gateway returns 
   yarn sls create_domain --stage mystage
 
  This can take up to 40 minutes.
- If you use AWS Route 53 for your DNS, .. code-block:: bash `sls create_domain` can update your DNS for you, you will need to edit the serverless.yml file for this. (For my demo, I'm not using Route 53)
+ If you use AWS Route 53 for your DNS, :code:`sls create_domain` can update your DNS for you, you will need to edit the serverless.yml file for this. (For my demo, I'm not using Route 53)
 
- Once your domain is up and running, simply redeploy using .. code-block:: bash
+ Once your domain is up and running, simply redeploy using :code:
 `sls deploy --stage mystage`
 
 Deploy commands
@@ -142,9 +142,9 @@ Installation
 ========================================================================
 
 * [Serverless](https://serverless.com/):
-	* .. code-block:: bash `npm install -g serverless`
-* Add credentials to the .. code-block:: bash `.aws/credentials` file
-* Do a .. code-block:: bash `npm install` in the .. code-block:: bash `analytics-services` folder
+	* :code:`npm install -g serverless`
+* Add credentials to the :code:`.aws/credentials` file
+* Do a :code:`npm install` in the :code:`analytics-services` folder
 
 
 ========================================================================
