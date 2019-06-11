@@ -104,30 +104,29 @@ All resources that are deployed with the previous command are part of the mystag
 will teardown the entire infrastructure.
 
 One thing to note:
-Without special precaution, the API gateway end points that AWS Gateway returns are rather cryptic. (e.g. endpoints:
- https://hvd9fb2p5f.execute-api.eu-west-1.amazonaws.com/devel/event). In order to have these endpoints in a more meaningful way (e.g. stats.mydomain.com), you will need to create an API Gateway domain. This can be done through serverless. (full documentation at https://serverless.com/blog/serverless-api-gateway-domain/)
+Without special precaution, the API gateway end points that AWS Gateway returns are rather cryptic. (e.g. endpoints: https://hvd9fb2p5f.execute-api.eu-west-1.amazonaws.com/devel/event). In order to have these endpoints in a more meaningful way (e.g. stats.mydomain.com), you will need to create an API Gateway domain. This can be done through serverless. (full documentation at https://serverless.com/blog/serverless-api-gateway-domain/)
 
- This project includes the custom domain plugin that does this automatically. Since API Gateway only works with https, you'll need to setup an ssl certificate. For that, you will need to use AWS Certificate Manager (https://aws.amazon.com/certificate-manager/). You can use your own certificates or have AWS handle that for you. AWS Certificate manager is a free service.
+This project includes the custom domain plugin that does this automatically. Since API Gateway only works with https, you'll need to setup an ssl certificate. For that, you will need to use AWS Certificate Manager (https://aws.amazon.com/certificate-manager/). You can use your own certificates or have AWS handle that for you. AWS Certificate manager is a free service.
 
- Setup your custom domain in AWS Certificate Manager, be sure to do that in the US-East-1 region (it will not work otherwise). Once that is done, you can setup your custom API Gateway domain through:
+Setup your custom domain in AWS Certificate Manager, be sure to do that in the US-East-1 region (it will not work otherwise). Once that is done, you can setup your custom API Gateway domain through:
 
- .. code-block:: bash
+.. code-block:: bash
 
-  yarn sls create_domain --stage mystage
+yarn sls create_domain --stage mystage
 
- This can take up to 40 minutes.
- If you use AWS Route 53 for your DNS, :code:`sls create_domain` can update your DNS for you, you will need to edit the serverless.yml file for this. (For my demo, I'm not using Route 53)
+This can take up to 40 minutes.
+If you use AWS Route 53 for your DNS, :code:`sls create_domain` can update your DNS for you, you will need to edit the serverless.yml file for this. (For my demo, I'm not using Route 53)
 
- Once your domain is up and running, simply redeploy using :code:
+Once your domain is up and running, simply redeploy using :code:
 `sls deploy --stage mystage`
 
 Deploy commands
 
 .. code-block:: bash
 
-   cd analytics-services
-   yarn install
-   yarn sls deploy -v --stage mystage
+ cd analytics-services
+ yarn install
+ yarn sls deploy -v --stage mystage
 
 To remove the stack: .. code-block:: bash `yarn sls remove -v --stage mystage`
 
