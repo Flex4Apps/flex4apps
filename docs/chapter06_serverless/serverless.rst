@@ -40,8 +40,9 @@ This entire stack is deployable through a single sls deploy command.
 
 
 Components:
-- Lambda Functions
-- DynamoDB Migrations
+
+* Lambda Functions
+* DynamoDB Migrations
 
 ========================================================================
 Project overview
@@ -56,7 +57,8 @@ This repo has the following main folders:
 analytics-services
 ========================================================================
 
-This folder contains the setup of the entire analytics backend. This includes
+This folder contains the setup of the entire analytics backend. This
+
 * an api gateway that listens for a POST on /event, that accepts json data in the form of .. code-block:: json `{user: "a userId", event: "an event", metaData: { json object containing meta data for the given event}}`
 * a lambda function that is triggered by the above incoming POST request and that updates the user profile and forwards the incoming record to a kinesis firehose.
 * firehose stream that forwards incoming events to an elasticsearch cluster and S3 backup bucket
@@ -152,10 +154,10 @@ In order to access kibana, the easiest solution is to run a local proxy server. 
 What I did:
 .. code-block:: bash
 
-  $ wget https://github.com/abutaha/aws-es-proxy/releases/download/v0.4/aws-es-proxy-0.4-mac-amd64 -O aws-es-proxy
-  $ chmod +x aws-es-proxy
-  $ export AWS_PROFILE=esuser #be sure to add a esuser into your ~/.aws/credentials file, copy over access key and secret
-  $ ./aws-es-proxy -endpoint https://<search-endpoint>.<region>.es.amazonaws.com
+  wget https://github.com/abutaha/aws-es-proxy/releases/download/v0.4/aws-es-proxy-0.4-mac-amd64 -O aws-es-proxy
+  chmod +x aws-es-proxy
+  export AWS_PROFILE=esuser #be sure to add a esuser into your ~/.aws/credentials file, copy over access key and secret
+  ./aws-es-proxy -endpoint https://<search-endpoint>.<region>.es.amazonaws.com
 
 
 you can now go to http://127.0.0.1:9200/_plugin/kibana and access your kibana dashboards.
