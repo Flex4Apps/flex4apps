@@ -17,6 +17,7 @@ Infrastructure Compnonents
 ========================================================================
 
 Components:
+
 * S3 backup bucket (analytics-[environment]-backup)
 * Dynamodb user profile table (analytics-[environment]-user-profile)
 * AWS Elasticsearch stack (analytics-[environment]-elasticsearch)
@@ -119,9 +120,9 @@ Deploy commands
 
 .. code-block:: bash
 
-   `cd analytics-services`
-   `yarn install`
-   `yarn sls deploy -v --stage mystage`
+   cd analytics-services
+   yarn install
+   yarn sls deploy -v --stage mystage
 
 To remove the stack: .. code-block:: bash `yarn sls remove -v --stage mystage`
 
