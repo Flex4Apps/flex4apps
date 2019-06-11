@@ -17,16 +17,16 @@ Infrastructure Compnonents
 ========================================================================
 
 Components:
-- S3 backup bucket (analytics-[environment]-backup)
-- Dynamodb user profile table (analytics-[environment]-user-profile)
-- AWS Elasticsearch stack (analytics-[environment]-elasticsearch)
-- Elasticsearch domain policy
-- Cloudwatch log group: (firehose_logs)
-- Cloudwatch log stream: (firehose_s3_log_stream, firehose_es_log_stream)
-- Kinesis firehose delivery stream: (analytics-[environment]-firehose-delivery)
-- Elasticsearch IAM Policy
-- Elasticsearch IAM user and key
-- Firehose IAM Policy and role
+* S3 backup bucket (analytics-[environment]-backup)
+* Dynamodb user profile table (analytics-[environment]-user-profile)
+* AWS Elasticsearch stack (analytics-[environment]-elasticsearch)
+* Elasticsearch domain policy
+* Cloudwatch log group: (firehose_logs)
+* Cloudwatch log stream: (firehose_s3_log_stream, firehose_es_log_stream)
+* Kinesis firehose delivery stream: (analytics-[environment]-firehose-delivery)
+* Elasticsearch IAM Policy
+* Elasticsearch IAM user and key
+* Firehose IAM Policy and role
 
 This entire stack is deployable through a single sls deploy command.
 
@@ -47,6 +47,7 @@ Project overview
 ========================================================================
 
 This repo has the following main folders:
+
 * analytics-services
 * demo-app
 
