@@ -41,8 +41,10 @@ API 3: Standard MQTT protocol
 -----------------------------
 
 Using MQTT is very common for many cyber pyhsical (IoT) systems. There are two basic use-cases to be distinguished:
-1: Devices (publishers) send their information directly to a managing instance (broker).
-2: An aggregation device collects information according to API 1 or 2 and uses MQTT to forward it to a broker. Appropriate software can run on many hardware platforms.
+
+1. Devices (publishers) send their information directly to a managing instance (broker).
+2. An aggregation device collects information according to API 1 or 2 and uses MQTT to forward it to a broker. Appropriate software can run on many hardware platforms.
+
 For security reasons it is advisable to use a VPN tunnel to transfer MQTT packets. Alternatively (or additionally) MQTT devices shall use encryption to communicate with the broker.
 
 * https://www.thethingsnetwork.org/docs/applications/mqtt/api.html
