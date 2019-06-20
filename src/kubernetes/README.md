@@ -47,7 +47,7 @@ To analyse metadata for anomalies Kibana is used. This tool provides visualizati
 
 ## Deployments
 
-## Set up Rancher / Kubernetes cluster (optional / unfertig)
+## Set up Rancher / Kubernetes cluster (optional)
 
 Given a bare metal physical or virtual server the following steps needed to set up a first Flex4Apps stack.
 
