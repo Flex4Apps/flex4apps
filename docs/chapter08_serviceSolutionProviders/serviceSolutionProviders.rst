@@ -4,7 +4,7 @@ Service and solution provider
 
 Questions about Flex4Apps?
 
-If you need additional information pls. get in contact with one of the following companies and referring to the Flex4Apps ITEA project:
+If you need additional information pls. get in contact with one of the following companies referring to the Flex4Apps ITEA project:
 
 
 ======================   ====================================
