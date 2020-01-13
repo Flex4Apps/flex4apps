@@ -15,6 +15,10 @@ Modern large-scale web services often produce vast amounts of logs, which makes 
 
 In this use case, tools to analyse unstructured log files are developed with the goal of creating an automated anomaly detection system. In this context, *anomaly* is defined as any irregular behaviour of the system on which the logs are produced, including software bugs and hardware failures. The real-life log files analysed within Flex4Apps are unstructured and produced by software running on complex telecommunication infrastructure elements.
 
+Log Templater - A tool for log conversion
+-----------------------------------------
+Central to our log analysis is *Log Templater*, a tool we developed to convert unstructured logs into structured (terminology is explained below) ones. We intend to make this tool open source. A link to the code will be published here.
+
 How to format logs
 ------------------
 
